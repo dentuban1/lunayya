@@ -65,12 +65,13 @@ async function loadSettings() {
       fImg.src = s.logo; fImg.style.display = "block"; fTxt.style.display = "none";
     }
 
-    // Hero carousel images
+    // Hero carousel images — set sebagai background-image langsung
     if (s.heroImages) {
       s.heroImages.forEach((url, i) => {
-        const wrap = document.getElementById(`slideImg${i}`);
-        if (!wrap || !url) return;
-        wrap.innerHTML = `<img src="${url}" alt="hero ${i+1}" style="width:100%;height:100%;object-fit:cover"/>`;
+        const bg = document.getElementById(`slideBg${i}`);
+        if (!bg || !url) return;
+        bg.style.backgroundImage = `url('${url}')`;
+        bg.classList.add("has-photo");
       });
     }
 
