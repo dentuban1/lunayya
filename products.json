@@ -1,22 +1,5 @@
 [
   {
-    "id": 3,
-    "name": "Rok Plisket Midi",
-    "price": 155000,
-    "emoji": "ð©±",
-    "sizes": [
-      "S",
-      "M",
-      "L"
-    ],
-    "colors": [
-      "Hitam",
-      "Coklat",
-      "Dusty Pink"
-    ],
-    "active": true
-  },
-  {
     "id": 4,
     "name": "Kemeja Tie-Dye",
     "price": 120000,
