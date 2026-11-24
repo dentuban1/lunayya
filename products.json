@@ -40,5 +40,19 @@
     ],
     "active": true,
     "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525267499.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Khiban Ivory HALUS bahan rayon tancel",
+    "price": 60000,
+    "emoji": "👗",
+    "sizes": [
+      "All Size"
+    ],
+    "colors": [
+      "Ivory"
+    ],
+    "active": true,
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525383043.jpg"
   }
 ]
