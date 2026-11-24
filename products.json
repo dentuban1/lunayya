@@ -1,23 +1,5 @@
 [
   {
-    "id": 4,
-    "name": "Kemeja Tie-Dye",
-    "price": 120000,
-    "emoji": "ð¨",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "colors": [
-      "Lavender",
-      "Mint",
-      "Peach"
-    ],
-    "active": true
-  },
-  {
     "id": 7,
     "name": "One set floral",
     "price": 65000,
