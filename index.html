@@ -1,61 +1,163 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>John Clothes – Female Fashion</title>
-  <meta name="description" content="Toko baju wanita online. Bahan nyaman, jahitan rapi, model kekinian. Pesan langsung via WhatsApp." />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lunayya – Hijab & Modest Fashion</title>
+  <meta name="description" content="Lunayya – Koleksi hijab dan busana muslimah premium. Elegan, nyaman, kekinian."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#" class="nav-brand">👗 John Clothes</a>
+      <a href="#" class="nav-brand">
+        <img id="siteLogo" src="" alt="Lunayya" class="logo-img" style="display:none"/>
+        <span id="logoText" class="logo-text">Lunayya</span>
+      </a>
       <ul class="nav-links">
         <li><a href="#beranda">Beranda</a></li>
-        <li><a href="#katalog">Katalog</a></li>
+        <li><a href="#katalog">Koleksi</a></li>
+        <li><a href="#testimoni">Testimoni</a></li>
         <li><a href="#cara-pesan">Cara Pesan</a></li>
-        <li><a href="#pesanan">Pesanan</a></li>
       </ul>
       <button class="cart-btn" id="cartBtn" onclick="scrollToOrder()">
-        🛍️ Pesanan <span id="cartCount">0</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Keranjang <span id="cartCount">0</span>
       </button>
+      <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#beranda" onclick="toggleMobileNav()">Beranda</a>
+      <a href="#katalog" onclick="toggleMobileNav()">Koleksi</a>
+      <a href="#testimoni" onclick="toggleMobileNav()">Testimoni</a>
+      <a href="#cara-pesan" onclick="toggleMobileNav()">Cara Pesan</a>
+      <a href="#pesanan" onclick="toggleMobileNav()">Pesanan</a>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO CAROUSEL -->
   <section class="hero" id="beranda">
-    <div class="hero-content">
-      <p class="hero-badge">✨ Penawaran Spesial Minggu Ini</p>
-      <h1>Stylish<br><span>Female Clothes</span></h1>
-      <p class="hero-desc">Bahan nyaman, jahitan rapi, model kekinian. Pilih ukuran &amp; warna favoritmu, lalu pesan langsung lewat WhatsApp.</p>
-      <div class="hero-buttons">
-        <a href="#katalog" class="btn btn-primary">Belanja Sekarang</a>
-        <a href="#cara-pesan" class="btn btn-outline">Cara Pesan</a>
+    <div class="hero-carousel" id="heroCarousel">
+      <!-- Slide 1 (default) -->
+      <div class="hero-slide active" id="slide-0">
+        <div class="slide-bg" style="background:linear-gradient(135deg,#1a0a2e 0%,#3d1a6b 50%,#6b2fa0 100%)"></div>
+        <div class="slide-content">
+          <div class="slide-text">
+            <span class="hero-eyebrow">✦ New Collection 2024</span>
+            <h1 class="hero-title">Anggun<br/><em>Tanpa Batas</em></h1>
+            <p class="hero-desc">Koleksi hijab & busana muslimah premium. Tampil elegan setiap hari.</p>
+            <div class="hero-cta">
+              <a href="#katalog" class="btn btn-hero-primary">Lihat Koleksi</a>
+              <a href="#cara-pesan" class="btn btn-hero-outline">Cara Pesan</a>
+            </div>
+          </div>
+          <div class="slide-visual">
+            <div class="slide-img-wrap" id="slideImg0">
+              <div class="slide-placeholder">🧕</div>
+            </div>
+            <div class="slide-badge-card">
+              <div class="badge-icon">⭐</div>
+              <div><strong>4.9/5</strong><span>Ribuan pembeli puas</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hero-social-proof">
-        <span class="avatars">🧕👩👩‍🦰</span>
-        <div>
-          <strong>Pelanggan Puas</strong>
-          <div class="stars">★★★★★ <span>4.9 dari ribuan ulasan</span></div>
+      <!-- Slide 2 -->
+      <div class="hero-slide" id="slide-1">
+        <div class="slide-bg" style="background:linear-gradient(135deg,#0f1f1a 0%,#1a4a3a 50%,#2d7a5f 100%)"></div>
+        <div class="slide-content">
+          <div class="slide-text">
+            <span class="hero-eyebrow">✦ Best Seller</span>
+            <h1 class="hero-title">Elegan<br/><em>Setiap Saat</em></h1>
+            <p class="hero-desc">Bahan premium, jahitan rapi, desain kekinian untuk wanita muslimah modern.</p>
+            <div class="hero-cta">
+              <a href="#katalog" class="btn btn-hero-primary">Shop Now</a>
+              <a href="#testimoni" class="btn btn-hero-outline">Testimoni</a>
+            </div>
+          </div>
+          <div class="slide-visual">
+            <div class="slide-img-wrap" id="slideImg1">
+              <div class="slide-placeholder">👗</div>
+            </div>
+            <div class="slide-badge-card">
+              <div class="badge-icon">🚚</div>
+              <div><strong>Free Ongkir</strong><span>Min. pembelian 2 pcs</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="hero-slide" id="slide-2">
+        <div class="slide-bg" style="background:linear-gradient(135deg,#1f0a0a 0%,#5a1a2e 50%,#9a2d50 100%)"></div>
+        <div class="slide-content">
+          <div class="slide-text">
+            <span class="hero-eyebrow">✦ Exclusive Promo</span>
+            <h1 class="hero-title">Style<br/><em>Muslimah</em></h1>
+            <p class="hero-desc">Ratusan pilihan warna & ukuran. Pesan mudah langsung via WhatsApp.</p>
+            <div class="hero-cta">
+              <a href="#pesanan" class="btn btn-hero-primary">Pesan Sekarang</a>
+              <a href="#katalog" class="btn btn-hero-outline">Lihat Semua</a>
+            </div>
+          </div>
+          <div class="slide-visual">
+            <div class="slide-img-wrap" id="slideImg2">
+              <div class="slide-placeholder">🎀</div>
+            </div>
+            <div class="slide-badge-card">
+              <div class="badge-icon">💎</div>
+              <div><strong>Premium Quality</strong><span>Bahan pilihan terbaik</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="hero-badges">
-      <div class="badge-pill">👗</div>
-      <div class="badge-pill">✨ Produk Baru</div>
-      <div class="badge-pill">🚚 Kirim ke Seluruh Indonesia</div>
+
+    <!-- Carousel controls -->
+    <button class="carousel-arrow left" onclick="moveCarousel(-1)">&#8249;</button>
+    <button class="carousel-arrow right" onclick="moveCarousel(1)">&#8250;</button>
+    <div class="carousel-dots" id="carouselDots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+      <button class="dot" onclick="goToSlide(2)"></button>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="hero-stats">
+      <div class="stat"><strong>2000+</strong><span>Produk Terjual</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>500+</strong><span>Pelanggan Setia</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>4.9★</strong><span>Rating Toko</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>All Indonesia</strong><span>Pengiriman</span></div>
     </div>
   </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>✦ Hijab Premium</span><span>✦ Gamis Elegan</span><span>✦ Busana Pesta</span>
+      <span>✦ Casual Muslimah</span><span>✦ Koleksi Baru</span><span>✦ Free Ongkir</span>
+      <span>✦ Hijab Premium</span><span>✦ Gamis Elegan</span><span>✦ Busana Pesta</span>
+      <span>✦ Casual Muslimah</span><span>✦ Koleksi Baru</span><span>✦ Free Ongkir</span>
+    </div>
+  </div>
 
   <!-- KATALOG -->
   <section class="katalog" id="katalog">
     <div class="section-container">
-      <h2>Katalog Produk</h2>
-      <p class="section-sub">Geser ke kiri / kanan untuk melihat produk. Pilih ukuran &amp; warna, lalu tekan "Tambah ke Pesanan".</p>
-
+      <div class="section-header">
+        <span class="section-eyebrow">Koleksi Kami</span>
+        <h2>Produk <em>Pilihan</em></h2>
+        <p>Pilih ukuran & warna, lalu tambahkan ke pesanan</p>
+      </div>
       <div class="slider-wrapper">
         <button class="slider-arrow left" id="sliderPrev">&#8249;</button>
         <div class="product-track" id="productTrack"></div>
@@ -65,22 +167,47 @@
     </div>
   </section>
 
+  <!-- TESTIMONI -->
+  <section class="testimoni" id="testimoni">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Kata Mereka</span>
+        <h2>Testimoni <em>Pelanggan</em></h2>
+      </div>
+      <div class="testi-grid" id="testiGrid">
+        <!-- Diisi dari settings.json -->
+        <div class="testi-placeholder">
+          <p>📸 Foto testimoni belum diunggah.</p>
+          <p>Upload di halaman Admin → Testimoni.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CARA PESAN -->
   <section class="cara-pesan" id="cara-pesan">
     <div class="section-container">
-      <h2>Cara Pesan</h2>
+      <div class="section-header">
+        <span class="section-eyebrow">Mudah & Cepat</span>
+        <h2>Cara <em>Pesan</em></h2>
+      </div>
       <div class="steps">
         <div class="step">
-          <div class="step-num">1</div>
-          <p>Pilih produk, ukuran &amp; warna lalu tambahkan ke pesanan.</p>
+          <div class="step-num">01</div>
+          <h3>Pilih Produk</h3>
+          <p>Pilih produk, ukuran & warna lalu klik tambah ke pesanan.</p>
         </div>
+        <div class="step-arrow">→</div>
         <div class="step">
-          <div class="step-num">2</div>
-          <p>Isi nama, alamat, dan nomor WhatsApp kamu.</p>
+          <div class="step-num">02</div>
+          <h3>Isi Data</h3>
+          <p>Isi nama, nomor WhatsApp, dan alamat pengiriman.</p>
         </div>
+        <div class="step-arrow">→</div>
         <div class="step">
-          <div class="step-num">3</div>
-          <p>Kirim — pesanan otomatis terbuka di WhatsApp penjual.</p>
+          <div class="step-num">03</div>
+          <h3>Kirim WA</h3>
+          <p>Pesanan otomatis terbuka di WhatsApp penjual. Tinggal kirim!</p>
         </div>
       </div>
     </div>
@@ -89,29 +216,27 @@
   <!-- PESANAN -->
   <section class="pesanan" id="pesanan">
     <div class="section-container">
-      <h2>Rekap Pesanan</h2>
-      <p class="section-sub">Periksa kembali pesananmu, isi data pengiriman, lalu kirim lewat WhatsApp.</p>
-
+      <div class="section-header">
+        <span class="section-eyebrow">Checkout</span>
+        <h2>Rekap <em>Pesanan</em></h2>
+      </div>
       <div class="order-grid">
-        <!-- Daftar produk -->
         <div class="order-card">
           <h3>🛍️ Produk yang dipesan</h3>
           <div id="orderList"><p class="empty-msg">Belum ada produk ditambahkan.</p></div>
           <div class="order-total">Total <strong id="orderTotal">Rp 0</strong></div>
         </div>
-
-        <!-- Form pengiriman -->
         <div class="order-card">
           <h3>📦 Data pengiriman</h3>
           <form id="orderForm" novalidate>
             <div class="form-group">
               <label for="nama">Nama lengkap</label>
-              <input type="text" id="nama" placeholder="Nama lengkap kamu" autocomplete="name" />
+              <input type="text" id="nama" placeholder="Nama lengkap kamu" autocomplete="name"/>
               <span class="form-err" id="namaErr">Isi nama lengkap (min. 2 huruf).</span>
             </div>
             <div class="form-group">
               <label for="wa">Nomor WhatsApp</label>
-              <input type="tel" id="wa" placeholder="08xxxxxxxxxx" autocomplete="tel" />
+              <input type="tel" id="wa" placeholder="08xxxxxxxxxx" autocomplete="tel"/>
               <span class="form-err" id="waErr">Nomor WhatsApp tidak valid.</span>
             </div>
             <div class="form-group">
@@ -121,7 +246,7 @@
             </div>
             <div class="form-group">
               <label for="catatan">Catatan (opsional)</label>
-              <textarea id="catatan" rows="2" placeholder="Contoh: warna lebih terang, jangan dilipat, dll."></textarea>
+              <textarea id="catatan" rows="2" placeholder="Instruksi khusus..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-block">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:6px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.547 5.874L0 24l6.302-1.521A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.001-1.368l-.36-.214-3.733.9.939-3.638-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
@@ -136,23 +261,38 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p><strong>John Clothes</strong></p>
-    <p>Pesan lewat WhatsApp · Kirim ke seluruh Indonesia</p>
-    <p class="footer-copy">© <span id="year"></span> Semua hak dilindungi</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img id="footerLogo" src="" alt="Lunayya" style="display:none;height:36px;margin-bottom:8px"/>
+        <div class="footer-logo-text" id="footerLogoText">Lunayya</div>
+        <p>Hijab & Modest Fashion Premium</p>
+      </div>
+      <div class="footer-links">
+        <a href="#beranda">Beranda</a>
+        <a href="#katalog">Koleksi</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="#cara-pesan">Cara Pesan</a>
+      </div>
+      <div class="footer-info">
+        <p>Pesan via WhatsApp · Kirim ke seluruh Indonesia</p>
+        <p class="footer-copy">© <span id="year"></span> Lunayya. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 
   <!-- STICKY CART -->
   <div class="sticky-cart" id="stickyCart" onclick="scrollToOrder()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
     <span id="stickyCount">0</span> item · <span id="stickyTotal">Rp 0</span>
-    <strong>Lihat Pesanan →</strong>
+    <strong>Pesan →</strong>
   </div>
 
   <!-- SUCCESS MODAL -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <div class="modal-icon">✓</div>
-      <h3>Pesanan siap dikirim!</h3>
-      <p>WhatsApp akan terbuka dengan rincian pesananmu. Tekan <strong>Kirim</strong> di WhatsApp untuk menyelesaikan. Jika tidak terbuka, klik tombol di bawah.</p>
+      <h3>Pesanan Siap Dikirim!</h3>
+      <p>WhatsApp akan terbuka dengan rincian pesananmu. Tekan <strong>Kirim</strong> untuk menyelesaikan.</p>
       <a href="#" id="waFallback" class="btn btn-primary" target="_blank" rel="noopener">Buka WhatsApp</a>
       <button class="btn btn-outline" onclick="closeModal()">Tutup</button>
     </div>

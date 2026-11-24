@@ -3,180 +3,244 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin – John Clothes</title>
+  <title>Admin – Lunayya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f5f7;color:#1a1a1a;min-height:100vh}
-    :root{--pink:#e91e8c;--pink-dark:#c2177a;--pink-light:#fce4f3;--radius:12px}
+    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#f8f7ff;color:#1a1a1a;min-height:100vh}
+    :root{--purple:#7c3aed;--purple-dark:#5b21b6;--purple-light:#ede9fe;--radius:14px}
 
     /* LOGIN */
-    #loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
-    .login-box{background:#fff;border-radius:20px;padding:40px 36px;max-width:400px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.12);text-align:center}
-    .login-box h1{font-size:1.6rem;margin-bottom:6px}
-    .login-box p{color:#888;font-size:.9rem;margin-bottom:28px}
+    #loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:linear-gradient(135deg,#1a0a2e,#3d1a6b)}
+    .login-box{background:#fff;border-radius:24px;padding:44px 40px;max-width:420px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,.3);text-align:center}
+    .login-logo{font-size:1.8rem;font-weight:800;color:var(--purple);margin-bottom:4px;letter-spacing:-.02em}
+    .login-sub{color:#888;font-size:.88rem;margin-bottom:32px}
     .form-group{margin-bottom:16px;text-align:left}
-    .form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
-    .form-group input{width:100%;padding:10px 14px;border:1.5px solid #ddd;border-radius:10px;font-size:.93rem}
-    .form-group input:focus{outline:none;border-color:var(--pink)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 24px;border-radius:99px;font-weight:600;font-size:.93rem;cursor:pointer;border:2px solid transparent;transition:all .2s}
-    .btn-primary{background:var(--pink);color:#fff;width:100%}
-    .btn-primary:hover{background:var(--pink-dark)}
+    .form-group label{display:block;font-size:.83rem;font-weight:700;margin-bottom:6px;color:#333}
+    .form-group input,.form-group textarea{width:100%;padding:11px 14px;border:1.5px solid #e0d9ff;border-radius:12px;font-size:.92rem;font-family:inherit;background:#faf8ff}
+    .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--purple)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 24px;border-radius:99px;font-weight:700;font-size:.9rem;cursor:pointer;border:2px solid transparent;transition:all .2s;font-family:inherit}
+    .btn-primary{background:var(--purple);color:#fff}
+    .btn-primary:hover{background:var(--purple-dark)}
+    .btn-block{width:100%}
     .btn-danger{background:#fee2e2;color:#dc2626;border-color:#fca5a5}
     .btn-danger:hover{background:#fecaca}
-    .btn-sm{padding:7px 14px;font-size:.82rem}
-    .btn-outline{background:transparent;color:var(--pink);border-color:var(--pink)}
-    .btn-outline:hover{background:var(--pink-light)}
-    .err-msg{color:#dc2626;font-size:.83rem;margin-top:10px;display:none}
+    .btn-sm{padding:7px 16px;font-size:.8rem}
+    .btn-outline{background:transparent;color:var(--purple);border-color:var(--purple)}
+    .btn-outline:hover{background:var(--purple-light)}
+    .btn-ghost{background:transparent;color:#888;border-color:#ddd}
+    .btn-ghost:hover{background:#f5f5f5}
+    .err-msg{color:#dc2626;font-size:.8rem;margin-top:10px;display:none}
+    .hint{font-size:.75rem;color:#aaa;margin-top:4px}
 
     /* ADMIN LAYOUT */
-    #adminScreen{display:none}
-    .topbar{background:#fff;border-bottom:1px solid #eee;padding:0 24px;height:60px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:10}
-    .topbar-brand{font-weight:800;font-size:1.1rem;color:var(--pink);flex:1}
-    .topbar a{font-size:.85rem;color:#666;text-decoration:none}
-    .topbar a:hover{color:var(--pink)}
-    .admin-body{max-width:960px;margin:0 auto;padding:28px 20px}
+    #adminScreen{display:none;min-height:100vh}
+    .topbar{background:#fff;border-bottom:1px solid #ede9fe;padding:0 28px;height:62px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px rgba(124,58,237,.06)}
+    .topbar-brand{font-weight:800;font-size:1.15rem;color:var(--purple);flex:1;letter-spacing:-.02em}
+    .topbar a{font-size:.83rem;color:#666;text-decoration:none;font-weight:600}
+    .topbar a:hover{color:var(--purple)}
+    .admin-body{max-width:980px;margin:0 auto;padding:32px 20px}
 
     /* TABS */
-    .tabs{display:flex;gap:4px;background:#e8e8ed;border-radius:10px;padding:4px;margin-bottom:28px;width:fit-content}
-    .tab-btn{padding:8px 22px;border:none;border-radius:8px;font-weight:600;font-size:.88rem;cursor:pointer;background:transparent;color:#666;transition:all .2s}
-    .tab-btn.active{background:#fff;color:var(--pink);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .tabs{display:flex;gap:4px;background:#ede9fe;border-radius:12px;padding:4px;margin-bottom:28px;flex-wrap:wrap}
+    .tab-btn{padding:9px 20px;border:none;border-radius:9px;font-weight:700;font-size:.83rem;cursor:pointer;background:transparent;color:#888;transition:all .2s;font-family:inherit}
+    .tab-btn.active{background:#fff;color:var(--purple);box-shadow:0 2px 10px rgba(124,58,237,.12)}
 
     /* CARDS */
-    .card{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:20px}
-    .card h2{font-size:1.1rem;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #f0f0f0}
+    .card{background:#fff;border-radius:var(--radius);padding:26px;box-shadow:0 2px 16px rgba(124,58,237,.06);margin-bottom:20px;border:1.5px solid #f0ebff}
+    .card-title{font-size:1rem;font-weight:800;margin-bottom:18px;padding-bottom:12px;border-bottom:1.5px solid #f5f0ff;color:#1a1a1a}
 
-    /* PRODUCT FORM */
+    /* FORM */
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .form-row .form-group{margin-bottom:0}
-    .form-group textarea{width:100%;padding:10px 14px;border:1.5px solid #ddd;border-radius:10px;font-size:.88rem;resize:vertical;font-family:inherit}
-    .form-group textarea:focus{outline:none;border-color:var(--pink)}
+    .form-group textarea{resize:vertical}
     .form-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
-    .emoji-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .emoji-opt{font-size:1.5rem;cursor:pointer;padding:6px;border-radius:8px;border:2px solid transparent;transition:all .15s}
-    .emoji-opt:hover,.emoji-opt.selected{border-color:var(--pink);background:var(--pink-light)}
-    .hint{font-size:.78rem;color:#aaa;margin-top:4px}
-    input[type=checkbox]{width:16px;height:16px;accent-color:var(--pink);margin-right:6px;cursor:pointer}
+    .emoji-grid{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+    .emoji-opt{font-size:1.4rem;cursor:pointer;padding:6px 8px;border-radius:8px;border:2px solid transparent;transition:all .15s}
+    .emoji-opt:hover,.emoji-opt.selected{border-color:var(--purple);background:var(--purple-light)}
+    input[type=checkbox]{width:16px;height:16px;accent-color:var(--purple);margin-right:6px;cursor:pointer}
 
-    /* IMAGE UPLOAD */
-    .img-upload-area{
-      border:2px dashed #ddd;border-radius:var(--radius);
-      padding:20px;text-align:center;cursor:pointer;
+    /* UPLOAD AREA */
+    .upload-area{
+      border:2px dashed #d8d0ff;border-radius:var(--radius);
+      padding:22px 16px;text-align:center;cursor:pointer;
       transition:border-color .2s,background .2s;
       position:relative;overflow:hidden;
-      background:#fafafa;min-height:120px;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+      background:#faf8ff;min-height:110px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
     }
-    .img-upload-area:hover,.img-upload-area.drag{border-color:var(--pink);background:var(--pink-light)}
-    .img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-    .img-preview{width:100%;max-height:200px;object-fit:contain;border-radius:8px;margin-top:8px;display:none}
-    .img-preview.show{display:block}
-    .img-upload-icon{font-size:2rem}
-    .img-upload-label{font-size:.88rem;color:#888}
-    .img-upload-hint{font-size:.75rem;color:#bbb}
-    .img-remove-btn{
+    .upload-area:hover,.upload-area.drag{border-color:var(--purple);background:var(--purple-light)}
+    .upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+    .upload-icon{font-size:1.8rem}
+    .upload-label{font-size:.85rem;color:#666;font-weight:600}
+    .upload-hint{font-size:.74rem;color:#bbb}
+    .preview-img{width:100%;max-height:180px;object-fit:contain;border-radius:10px;margin-top:6px;display:none}
+    .preview-img.show{display:block}
+    .remove-img-btn{
       position:absolute;top:8px;right:8px;
-      background:#fff;border:1px solid #ddd;border-radius:50%;
-      width:26px;height:26px;cursor:pointer;font-size:.9rem;
-      display:none;align-items:center;justify-content:center;
-      z-index:2;transition:background .2s;
+      background:#fff;border:1.5px solid #eee;border-radius:50%;
+      width:28px;height:28px;cursor:pointer;font-size:.9rem;
+      display:none;align-items:center;justify-content:center;z-index:2;
+      transition:background .2s;
     }
-    .img-remove-btn:hover{background:#fee2e2}
-    .img-remove-btn.show{display:flex}
-    .upload-progress{width:100%;background:#eee;border-radius:99px;height:6px;margin-top:8px;display:none}
-    .upload-progress-bar{height:100%;background:var(--pink);border-radius:99px;width:0;transition:width .3s}
-    .upload-progress.show{display:block}
+    .remove-img-btn:hover{background:#fee2e2}
+    .remove-img-btn.show{display:flex}
+
+    /* PROGRESS */
+    .progress-bar-wrap{width:100%;background:#ede9fe;border-radius:99px;height:5px;margin-top:8px;display:none}
+    .progress-bar{height:100%;background:var(--purple);border-radius:99px;width:0;transition:width .4s}
+    .progress-bar-wrap.show{display:block}
 
     /* PRODUCT LIST */
-    .product-list{display:flex;flex-direction:column;gap:12px}
-    .product-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border-radius:var(--radius);box-shadow:0 1px 6px rgba(0,0,0,.06);transition:box-shadow .2s}
-    .product-row:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
-    .product-thumb{width:52px;height:52px;border-radius:10px;object-fit:cover;background:#f9e4f4;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem;overflow:hidden}
+    .product-list{display:flex;flex-direction:column;gap:11px}
+    .product-row{display:flex;align-items:center;gap:14px;padding:13px 16px;background:#fff;border-radius:var(--radius);box-shadow:0 1px 8px rgba(124,58,237,.06);transition:box-shadow .2s;border:1.5px solid #f5f0ff}
+    .product-row:hover{box-shadow:0 4px 20px rgba(124,58,237,.12)}
+    .product-thumb{width:52px;height:52px;border-radius:10px;object-fit:cover;background:#f5f0ff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem;overflow:hidden}
     .product-thumb img{width:100%;height:100%;object-fit:cover}
     .product-info{flex:1;min-width:0}
-    .product-info strong{display:block;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .product-info span{font-size:.8rem;color:#888}
-    .product-price{font-weight:700;color:var(--pink);font-size:.95rem;white-space:nowrap}
-    .product-actions{display:flex;gap:8px;flex-shrink:0}
-    .badge-off{display:inline-block;background:#fee2e2;color:#dc2626;border-radius:99px;padding:2px 10px;font-size:.72rem;font-weight:600;margin-left:6px}
+    .product-info strong{display:block;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .product-info span{font-size:.78rem;color:#888}
+    .product-price{font-weight:800;color:var(--purple);font-size:.93rem;white-space:nowrap}
+    .product-actions{display:flex;gap:7px;flex-shrink:0}
+    .badge-off{display:inline-block;background:#fee2e2;color:#dc2626;border-radius:99px;padding:1px 9px;font-size:.7rem;font-weight:700;margin-left:5px}
+
+    /* TESTIMONI GRID */
+    .testi-upload-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+    .testi-slot{
+      aspect-ratio:4/5;border-radius:var(--radius);
+      border:2px dashed #d8d0ff;background:#faf8ff;
+      position:relative;overflow:hidden;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      flex-direction:column;gap:6px;transition:border-color .2s,background .2s;
+    }
+    .testi-slot:hover{border-color:var(--purple);background:var(--purple-light)}
+    .testi-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+    .testi-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .testi-slot-icon{font-size:1.6rem;position:relative;z-index:1}
+    .testi-slot-label{font-size:.74rem;color:#aaa;position:relative;z-index:1}
+    .testi-del-btn{
+      position:absolute;top:6px;right:6px;z-index:5;
+      background:#fff;border:1.5px solid #eee;border-radius:50%;
+      width:26px;height:26px;cursor:pointer;font-size:.82rem;
+      display:none;align-items:center;justify-content:center;
+    }
+    .testi-del-btn:hover{background:#fee2e2}
+    .testi-del-btn.show{display:flex}
+
+    /* HERO SLOTS */
+    .hero-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .hero-slot{
+      aspect-ratio:3/4;border-radius:var(--radius);
+      border:2px dashed #d8d0ff;background:#faf8ff;
+      position:relative;overflow:hidden;cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+      transition:border-color .2s,background .2s;
+    }
+    .hero-slot:hover{border-color:var(--purple);background:var(--purple-light)}
+    .hero-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+    .hero-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero-slot-num{font-size:2rem;font-weight:800;color:#d8d0ff;position:relative;z-index:1}
+    .hero-slot-label{font-size:.78rem;color:#bbb;position:relative;z-index:1;text-align:center;padding:0 8px}
+    .hero-slot-del{
+      position:absolute;top:8px;right:8px;z-index:5;
+      background:#fff;border:1.5px solid #eee;border-radius:50%;
+      width:28px;height:28px;cursor:pointer;font-size:.88rem;
+      display:none;align-items:center;justify-content:center;
+    }
+    .hero-slot-del:hover{background:#fee2e2}
+    .hero-slot-del.show{display:flex}
+
+    /* LOGO PREVIEW */
+    .logo-preview-box{
+      display:flex;align-items:center;gap:20px;
+      background:#faf8ff;border-radius:var(--radius);
+      border:1.5px solid #ede9fe;padding:20px;margin-top:16px;
+    }
+    .logo-preview-box img{max-height:60px;max-width:200px;object-fit:contain}
+    .logo-preview-box .placeholder{font-size:1.4rem;font-weight:800;color:var(--purple)}
 
     /* ORDERS */
-    .order-row{padding:16px;background:#fff;border-radius:var(--radius);box-shadow:0 1px 6px rgba(0,0,0,.06);margin-bottom:12px}
+    .order-row{padding:16px;background:#fff;border-radius:var(--radius);box-shadow:0 1px 8px rgba(124,58,237,.06);margin-bottom:11px;border:1.5px solid #f5f0ff}
     .order-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
-    .order-num{background:var(--pink-light);color:var(--pink);border-radius:99px;padding:3px 12px;font-size:.8rem;font-weight:700}
-    .order-time{font-size:.78rem;color:#aaa;margin-left:auto}
-    .order-detail{font-size:.85rem;color:#444;line-height:1.8}
-    .order-items{background:#f9f9f9;border-radius:8px;padding:10px 14px;margin:8px 0;font-size:.83rem}
+    .order-num{background:var(--purple-light);color:var(--purple);border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:800}
+    .order-time{font-size:.76rem;color:#aaa;margin-left:auto}
+    .order-detail{font-size:.83rem;color:#444;line-height:1.9}
+    .order-items{background:#f8f7ff;border-radius:10px;padding:10px 14px;margin:8px 0;font-size:.82rem}
 
     /* TOAST */
-    .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:12px 24px;border-radius:99px;font-size:.88rem;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
+    .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#1a0a2e;color:#fff;padding:12px 28px;border-radius:99px;font-size:.86rem;font-weight:600;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;border:1px solid rgba(192,132,252,.3)}
     .toast.show{opacity:1}
 
-    /* LOADING */
-    .spinner{display:inline-block;width:18px;height:18px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle}
+    /* SPINNER */
+    .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .loading-overlay{text-align:center;padding:40px;color:#aaa}
+    .loading-overlay{text-align:center;padding:44px;color:#bbb}
 
-    @media(max-width:600px){
+    @media(max-width:640px){
       .form-row{grid-template-columns:1fr}
       .product-row{flex-wrap:wrap}
-      .product-actions{width:100%}
+      .hero-slots{grid-template-columns:1fr 1fr}
+      .testi-upload-grid{grid-template-columns:repeat(2,1fr)}
     }
   </style>
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- ==================== LOGIN ==================== -->
 <div id="loginScreen">
   <div class="login-box">
-    <h1>🔐 Admin Panel</h1>
-    <p>John Clothes · Kelola produk & pesanan</p>
+    <div class="login-logo">🌙 Lunayya</div>
+    <div class="login-sub">Admin Panel · Kelola toko kamu</div>
     <div class="form-group">
       <label>GitHub Token (Classic · scope: repo)</label>
       <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxx" autocomplete="current-password"/>
-      <div class="hint">Token disimpan di browser kamu saja, tidak dikirim ke mana pun kecuali GitHub.</div>
+      <div class="hint">Token tersimpan di browser kamu saja.</div>
     </div>
-    <button class="btn btn-primary" onclick="doLogin()">Masuk</button>
+    <button class="btn btn-primary btn-block" onclick="doLogin()">Masuk ke Admin</button>
     <div class="err-msg" id="loginErr">Token tidak valid atau tidak punya akses ke repo.</div>
   </div>
 </div>
 
-<!-- ADMIN -->
+<!-- ==================== ADMIN ==================== -->
 <div id="adminScreen">
   <div class="topbar">
-    <div class="topbar-brand">🛍️ Admin John Clothes</div>
+    <div class="topbar-brand">🌙 Lunayya Admin</div>
     <a href="index.html" target="_blank">Lihat toko ↗</a>
-    <button class="btn btn-sm btn-outline" onclick="doLogout()" style="margin-left:8px">Keluar</button>
+    <button class="btn btn-sm btn-ghost" onclick="doLogout()" style="margin-left:8px">Keluar</button>
   </div>
   <div class="admin-body">
+
     <div class="tabs">
-      <button class="tab-btn active" onclick="showTab('products')">Produk</button>
-      <button class="tab-btn" onclick="showTab('orders')">Pesanan Masuk</button>
+      <button class="tab-btn active" onclick="showTab('products')">📦 Produk</button>
+      <button class="tab-btn" onclick="showTab('appearance')">🎨 Tampilan</button>
+      <button class="tab-btn" onclick="showTab('orders')">📋 Pesanan</button>
     </div>
 
-    <!-- TAB PRODUK -->
+    <!-- ===== TAB PRODUK ===== -->
     <div id="tabProducts">
       <div class="card">
-        <h2 id="formTitle">➕ Tambah Produk</h2>
+        <div class="card-title" id="formTitle">➕ Tambah Produk</div>
 
-        <!-- FOTO -->
-        <div class="form-group" style="margin-bottom:18px">
-          <label>Foto Produk <span style="color:#aaa;font-weight:400">(opsional, maks 1 MB)</span></label>
-          <div class="img-upload-area" id="uploadArea">
-            <input type="file" id="fImage" accept="image/jpeg,image/png,image/webp" onchange="onImagePick(event)"/>
-            <button type="button" class="img-remove-btn" id="imgRemoveBtn" onclick="removeImage(event)">×</button>
-            <div id="uploadPlaceholder">
-              <div class="img-upload-icon">📷</div>
-              <div class="img-upload-label">Klik atau seret foto ke sini</div>
-              <div class="img-upload-hint">JPG / PNG / WEBP · max 1 MB · otomatis dikecilkan</div>
+        <!-- Foto -->
+        <div class="form-group">
+          <label>Foto Produk <span style="color:#bbb;font-weight:400">(opsional · maks 2 MB)</span></label>
+          <div class="upload-area" id="productImgArea">
+            <input type="file" id="fImage" accept="image/jpeg,image/png,image/webp" onchange="onProductImagePick(event)"/>
+            <button type="button" class="remove-img-btn" id="productImgRemove" onclick="removeProductImage(event)">×</button>
+            <div id="productImgPlaceholder">
+              <div class="upload-icon">📷</div>
+              <div class="upload-label">Klik atau seret foto ke sini</div>
+              <div class="upload-hint">JPG / PNG / WEBP · otomatis dikecilkan ke 800px</div>
             </div>
-            <img class="img-preview" id="imgPreview" alt="preview"/>
-            <div class="upload-progress" id="uploadProgress"><div class="upload-progress-bar" id="uploadProgressBar"></div></div>
+            <img class="preview-img" id="productImgPreview" alt="preview"/>
+            <div class="progress-bar-wrap" id="productImgProgress"><div class="progress-bar" id="productImgBar"></div></div>
           </div>
         </div>
 
-        <!-- EMOJI (fallback jika tidak ada foto) -->
-        <div class="form-group" style="margin-bottom:14px">
-          <label>Ikon Emoji <span style="color:#aaa;font-weight:400">(tampil jika tidak ada foto)</span></label>
+        <!-- Emoji -->
+        <div class="form-group">
+          <label>Ikon Emoji <span style="color:#bbb;font-weight:400">(tampil jika tidak ada foto)</span></label>
           <div class="emoji-grid" id="emojiGrid"></div>
           <input type="hidden" id="fEmoji" value="👗"/>
         </div>
@@ -184,73 +248,159 @@
         <div class="form-row">
           <div class="form-group">
             <label>Nama Produk</label>
-            <input type="text" id="fName" placeholder="Contoh: Dress Floral"/>
+            <input type="text" id="fName" placeholder="Contoh: Hijab Voile Premium"/>
           </div>
           <div class="form-group">
             <label>Harga (Rp)</label>
-            <input type="number" id="fPrice" placeholder="150000"/>
+            <input type="number" id="fPrice" placeholder="85000"/>
           </div>
         </div>
         <div class="form-group" style="margin-top:14px">
-          <label>Ukuran <span style="color:#aaa;font-weight:400">(pisahkan koma)</span></label>
+          <label>Ukuran <span style="color:#bbb;font-weight:400">(pisahkan koma)</span></label>
           <input type="text" id="fSizes" placeholder="S, M, L, XL"/>
         </div>
         <div class="form-group" style="margin-top:14px">
-          <label>Warna <span style="color:#aaa;font-weight:400">(pisahkan koma)</span></label>
-          <input type="text" id="fColors" placeholder="Merah, Putih, Hitam"/>
+          <label>Warna <span style="color:#bbb;font-weight:400">(pisahkan koma)</span></label>
+          <input type="text" id="fColors" placeholder="Hitam, Putih, Navy, Dusty Pink"/>
         </div>
         <div class="form-group" style="margin-top:14px;display:flex;align-items:center">
           <input type="checkbox" id="fActive" checked/>
-          <label for="fActive" style="margin:0;cursor:pointer">Tampilkan di toko</label>
+          <label for="fActive" style="margin:0;cursor:pointer;font-weight:600">Tampilkan di toko</label>
         </div>
         <div class="form-actions">
           <button class="btn btn-primary" id="saveBtn" onclick="saveProduct()">Simpan Produk</button>
-          <button class="btn btn-outline" id="cancelBtn" onclick="cancelEdit()" style="display:none">Batal</button>
+          <button class="btn btn-ghost" id="cancelBtn" onclick="cancelEdit()" style="display:none">Batal</button>
         </div>
       </div>
 
       <div class="card">
-        <h2>📦 Daftar Produk</h2>
+        <div class="card-title">📦 Daftar Produk</div>
         <div id="productList" class="product-list">
           <div class="loading-overlay">Memuat produk...</div>
         </div>
       </div>
     </div>
 
-    <!-- TAB PESANAN -->
-    <div id="tabOrders" style="display:none">
+    <!-- ===== TAB TAMPILAN ===== -->
+    <div id="tabAppearance" style="display:none">
+
+      <!-- LOGO -->
       <div class="card">
-        <h2>📋 Pesanan Masuk</h2>
-        <div id="orderList">
-          <div class="loading-overlay">Memuat pesanan...</div>
+        <div class="card-title">🏷️ Logo Toko</div>
+        <p style="font-size:.85rem;color:#888;margin-bottom:16px">Upload logo toko kamu. Akan muncul di navbar dan footer. Gunakan PNG transparan untuk hasil terbaik.</p>
+        <div class="upload-area" id="logoArea" style="max-width:340px">
+          <input type="file" id="logoInput" accept="image/png,image/jpeg,image/svg+xml,image/webp" onchange="onLogoPick(event)"/>
+          <button type="button" class="remove-img-btn" id="logoRemove" onclick="removeLogo(event)">×</button>
+          <div id="logoPlaceholder">
+            <div class="upload-icon">🏷️</div>
+            <div class="upload-label">Upload Logo</div>
+            <div class="upload-hint">PNG transparan direkomendasikan · maks 1 MB</div>
+          </div>
+          <img class="preview-img" id="logoPreview" alt="logo preview"/>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary btn-sm" onclick="saveLogo()">Simpan Logo</button>
         </div>
       </div>
+
+      <!-- HERO CAROUSEL IMAGES -->
+      <div class="card">
+        <div class="card-title">🖼️ Foto Hero (Carousel 3 Slide)</div>
+        <p style="font-size:.85rem;color:#888;margin-bottom:20px">Upload foto untuk 3 slide di bagian utama halaman. Rasio 3:4 (portrait) direkomendasikan.</p>
+        <div class="hero-slots">
+          <div class="hero-slot" id="heroSlot0">
+            <input type="file" accept="image/*" onchange="onHeroImagePick(event,0)"/>
+            <button type="button" class="hero-slot-del" id="heroDel0" onclick="removeHeroImage(event,0)">×</button>
+            <div class="hero-slot-num" id="heroSlotNum0">1</div>
+            <div class="hero-slot-label">Slide 1</div>
+          </div>
+          <div class="hero-slot" id="heroSlot1">
+            <input type="file" accept="image/*" onchange="onHeroImagePick(event,1)"/>
+            <button type="button" class="hero-slot-del" id="heroDel1" onclick="removeHeroImage(event,1)">×</button>
+            <div class="hero-slot-num" id="heroSlotNum1">2</div>
+            <div class="hero-slot-label">Slide 2</div>
+          </div>
+          <div class="hero-slot" id="heroSlot2">
+            <input type="file" accept="image/*" onchange="onHeroImagePick(event,2)"/>
+            <button type="button" class="hero-slot-del" id="heroDel2" onclick="removeHeroImage(event,2)">×</button>
+            <div class="hero-slot-num" id="heroSlotNum2">3</div>
+            <div class="hero-slot-label">Slide 3</div>
+          </div>
+        </div>
+        <div class="form-actions" style="margin-top:20px">
+          <button class="btn btn-primary btn-sm" onclick="saveHeroImages()">Simpan Foto Hero</button>
+        </div>
+      </div>
+
+      <!-- TESTIMONI -->
+      <div class="card">
+        <div class="card-title">💬 Foto Testimoni</div>
+        <p style="font-size:.85rem;color:#888;margin-bottom:20px">Upload foto testimoni pelanggan. Klik kotak untuk menambah, tekan × untuk hapus. Bisa hingga 8 foto.</p>
+        <div class="testi-upload-grid" id="testiGrid"></div>
+        <div class="form-actions" style="margin-top:20px">
+          <button class="btn btn-primary btn-sm" onclick="saveTestimoni()">Simpan Testimoni</button>
+        </div>
+      </div>
+
     </div>
+
+    <!-- ===== TAB PESANAN ===== -->
+    <div id="tabOrders" style="display:none">
+      <div class="card">
+        <div class="card-title">📋 Pesanan Masuk</div>
+        <div id="orderList"><div class="loading-overlay">Memuat pesanan...</div></div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-/* ===== CONFIG ===== */
+/* ======================================================
+   CONFIG
+====================================================== */
 const REPO_OWNER    = "dentuban1";
 const REPO_NAME     = "lunayya";
 const PRODUCTS_FILE = "products.json";
+const SETTINGS_FILE = "settings.json";
 const IMAGES_DIR    = "images";
 
-const EMOJIS = ["👗","👚","👘","🩱","🧥","👖","👒","👜","🎀","🧣","🧤","💄","💍","🛍️","🎨","✨"];
+const EMOJIS = ["👗","👚","👘","🩱","🧥","👖","👒","👜","🎀","🧣","🧤","💄","💍","🛍️","🎨","✨","🌙","🌸"];
 
-let TOKEN      = "";
-let editingId  = null;
-let products   = [];
-let fileSha    = "";
-let imageB64   = null;   // base64 string tanpa prefix, null = tidak ada / tidak berubah
-let imageName  = null;   // nama file gambar saat ini (untuk edit)
-let imageChanged = false;
+/* ======================================================
+   STATE
+====================================================== */
+let TOKEN    = "";
+let products = [];
+let settings = { logo:"", heroImages:["","",""], testimoni:[] };
+let productFileSha  = "";
+let settingsFileSha = "";
 
-/* ============================================================
+// Product form state
+let editingId     = null;
+let prodImgB64    = null;
+let prodImgChanged = false;
+let prodImgOldUrl  = null;
+
+// Hero images state  [b64|null, b64|null, b64|null] — null = no change
+let heroB64     = [null, null, null];
+let heroChanged = [false, false, false];
+let heroOldUrl  = ["", "", ""];
+
+// Logo state
+let logoB64     = null;
+let logoChanged = false;
+let logoOldUrl  = "";
+
+// Testimoni state
+let testiSlots   = [];   // array of { url: string|null, b64: string|null, changed: bool }
+const MAX_TESTI  = 8;
+
+/* ======================================================
    LOGIN
-============================================================ */
+====================================================== */
 async function doLogin() {
   const t = document.getElementById("tokenInput").value.trim();
   if (!t) return;
@@ -274,12 +424,12 @@ function doLogout() {
   document.getElementById("tokenInput").value = "";
 }
 
-/* ============================================================
+/* ======================================================
    INIT
-============================================================ */
+====================================================== */
 window.addEventListener("DOMContentLoaded", () => {
   buildEmojiGrid();
-  setupDragDrop();
+  setupDragDrop("productImgArea", onProductImageDrop);
   const saved = localStorage.getItem("jc_token");
   if (saved) { TOKEN = saved; document.getElementById("tokenInput").value = saved; doLogin(); }
   document.getElementById("tokenInput").addEventListener("keydown", e => { if(e.key==="Enter") doLogin(); });
@@ -300,104 +450,27 @@ function showAdmin() {
   document.getElementById("loginScreen").style.display = "none";
   document.getElementById("adminScreen").style.display = "block";
   loadProducts();
+  loadSettings();
 }
 
-/* ============================================================
+/* ======================================================
    TABS
-============================================================ */
+====================================================== */
 function showTab(tab) {
-  document.getElementById("tabProducts").style.display = tab==="products" ? "block" : "none";
-  document.getElementById("tabOrders").style.display   = tab==="orders"   ? "block" : "none";
-  document.querySelectorAll(".tab-btn").forEach((b,i) =>
-    b.classList.toggle("active", (i===0&&tab==="products")||(i===1&&tab==="orders"))
-  );
+  ["products","appearance","orders"].forEach(t => {
+    document.getElementById("tab"+capitalize(t)).style.display = t===tab ? "block" : "none";
+  });
+  document.querySelectorAll(".tab-btn").forEach((b,i) => {
+    b.classList.toggle("active", ["products","appearance","orders"][i]===tab);
+  });
   if (tab==="orders") loadOrders();
 }
 
-/* ============================================================
-   IMAGE HANDLING
-============================================================ */
-function setupDragDrop() {
-  const area = document.getElementById("uploadArea");
-  area.addEventListener("dragover",  e => { e.preventDefault(); area.classList.add("drag"); });
-  area.addEventListener("dragleave", () => area.classList.remove("drag"));
-  area.addEventListener("drop", e => {
-    e.preventDefault(); area.classList.remove("drag");
-    const file = e.dataTransfer.files[0];
-    if (file) processImageFile(file);
-  });
-}
+const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1);
 
-function onImagePick(e) {
-  const file = e.target.files[0];
-  if (file) processImageFile(file);
-}
-
-function processImageFile(file) {
-  if (!file.type.startsWith("image/")) { toast("File harus berupa gambar!"); return; }
-  if (file.size > 2 * 1024 * 1024) { toast("Gambar terlalu besar (maks 2 MB)!"); return; }
-
-  const reader = new FileReader();
-  reader.onload = ev => {
-    // Resize menggunakan canvas
-    const img = new Image();
-    img.onload = () => {
-      const MAX = 800;
-      let w = img.width, h = img.height;
-      if (w > MAX || h > MAX) {
-        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
-        else       { w = Math.round(w * MAX / h); h = MAX; }
-      }
-      const canvas = document.createElement("canvas");
-      canvas.width = w; canvas.height = h;
-      canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-      const dataUrl = canvas.toDataURL("image/jpeg", 0.82);
-      imageB64     = dataUrl.split(",")[1]; // base64 murni
-      imageChanged = true;
-      showPreview(dataUrl);
-    };
-    img.src = ev.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-function showPreview(src) {
-  const preview   = document.getElementById("imgPreview");
-  const removeBtn = document.getElementById("imgRemoveBtn");
-  const ph        = document.getElementById("uploadPlaceholder");
-  preview.src = src;
-  preview.classList.add("show");
-  removeBtn.classList.add("show");
-  ph.style.display = "none";
-}
-
-function removeImage(e) {
-  e.stopPropagation();
-  imageB64     = null;
-  imageChanged = true;
-  const preview   = document.getElementById("imgPreview");
-  const removeBtn = document.getElementById("imgRemoveBtn");
-  const ph        = document.getElementById("uploadPlaceholder");
-  preview.src = ""; preview.classList.remove("show");
-  removeBtn.classList.remove("show");
-  ph.style.display = "";
-  document.getElementById("fImage").value = "";
-}
-
-function resetImageUI() {
-  imageB64 = null; imageName = null; imageChanged = false;
-  const preview   = document.getElementById("imgPreview");
-  const removeBtn = document.getElementById("imgRemoveBtn");
-  const ph        = document.getElementById("uploadPlaceholder");
-  preview.src = ""; preview.classList.remove("show");
-  removeBtn.classList.remove("show");
-  ph.style.display = "";
-  document.getElementById("fImage").value = "";
-}
-
-/* ============================================================
+/* ======================================================
    GITHUB API
-============================================================ */
+====================================================== */
 async function ghFetch(url, token, options={}) {
   return fetch(url, {
     ...options,
@@ -412,59 +485,265 @@ async function ghFetch(url, token, options={}) {
 
 async function getFileSha(path) {
   const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`);
-  if (r.status === 404) return null;
-  const d = await r.json();
-  return d.sha || null;
+  if (r.status===404) return null;
+  return (await r.json()).sha || null;
 }
 
-async function uploadImage(b64, filename) {
-  const path = `${IMAGES_DIR}/${filename}`;
+async function uploadFileToBranch(b64, path, message) {
   const sha  = await getFileSha(path);
-  const body = { message: `upload gambar: ${filename}`, content: b64 };
+  const body = { message, content: b64 };
   if (sha) body.sha = sha;
   const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, TOKEN, {
-    method: "PUT", body: JSON.stringify(body)
+    method:"PUT", body:JSON.stringify(body)
   });
-  if (!r.ok) throw new Error("Gagal upload gambar");
+  if (!r.ok) { const e = await r.json(); throw new Error(e.message||"Gagal upload"); }
   return `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${path}`;
 }
 
+async function saveJsonFile(obj, filePath, fileShaRef, message) {
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(obj, null, 2))));
+  const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${filePath}`, TOKEN, {
+    method:"PUT",
+    body:JSON.stringify({ message, content, sha: fileShaRef })
+  });
+  if (!r.ok) throw new Error("Gagal menyimpan "+filePath);
+  return (await r.json()).content.sha;
+}
+
+/* ======================================================
+   LOAD DATA
+====================================================== */
 async function loadProducts() {
   try {
-    const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${PRODUCTS_FILE}`);
+    const r    = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${PRODUCTS_FILE}`);
     const data = await r.json();
-    fileSha  = data.sha;
+    productFileSha = data.sha;
     products = JSON.parse(atob(data.content.replace(/\n/g,"")));
-    renderProducts();
+    renderProductList();
   } catch {
     document.getElementById("productList").innerHTML = `<div class="loading-overlay">Gagal memuat produk.</div>`;
   }
 }
 
-async function saveToGitHub(newProducts, message) {
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(newProducts, null, 2))));
-  const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${PRODUCTS_FILE}`, TOKEN, {
-    method: "PUT",
-    body: JSON.stringify({ message, content, sha: fileSha })
-  });
-  if (!r.ok) throw new Error("Gagal menyimpan");
-  const data = await r.json();
-  fileSha = data.content.sha;
-  return data;
+async function loadSettings() {
+  try {
+    const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${SETTINGS_FILE}`);
+    if (r.status===404) { renderAppearanceUI(); return; }
+    const data = await r.json();
+    settingsFileSha = data.sha;
+    settings = JSON.parse(atob(data.content.replace(/\n/g,"")));
+    if (!settings.heroImages) settings.heroImages = ["","",""];
+    if (!settings.testimoni)  settings.testimoni  = [];
+    renderAppearanceUI();
+  } catch { renderAppearanceUI(); }
 }
 
-/* ============================================================
+/* ======================================================
+   APPEARANCE UI
+====================================================== */
+function renderAppearanceUI() {
+  // Logo
+  logoOldUrl = settings.logo || "";
+  if (logoOldUrl) {
+    showUploadPreview("logoPreview","logoPlaceholder","logoRemove", logoOldUrl);
+  }
+
+  // Hero images
+  heroOldUrl = [...(settings.heroImages||["","",""])];
+  heroOldUrl.forEach((url, i) => {
+    if (url) setHeroSlotImage(i, url);
+  });
+
+  // Testimoni slots
+  testiSlots = (settings.testimoni||[]).map(url => ({ url, b64:null, changed:false }));
+  // Tambah slot kosong sampai MAX_TESTI
+  while (testiSlots.length < MAX_TESTI) testiSlots.push({ url:null, b64:null, changed:false });
+  renderTestiGrid();
+}
+
+/* ======================================================
+   LOGO
+====================================================== */
+function onLogoPick(e) {
+  const f = e.target.files[0];
+  if (f) processUploadFile(f, 400, (b64, dataUrl) => {
+    logoB64 = b64; logoChanged = true;
+    showUploadPreview("logoPreview","logoPlaceholder","logoRemove", dataUrl);
+  });
+}
+
+function removeLogo(e) {
+  e.stopPropagation();
+  logoB64 = null; logoChanged = true;
+  hideUploadPreview("logoPreview","logoPlaceholder","logoRemove");
+  document.getElementById("logoInput").value = "";
+}
+
+async function saveLogo() {
+  if (!logoChanged) { toast("Belum ada perubahan logo."); return; }
+  const btn = event.target;
+  btn.innerHTML = `<span class="spinner"></span> Menyimpan...`; btn.disabled = true;
+  try {
+    let newUrl = "";
+    if (logoB64) {
+      newUrl = await uploadFileToBranch(logoB64, `${IMAGES_DIR}/logo.png`, "update logo toko");
+    }
+    settings.logo = newUrl;
+    settingsFileSha = await saveJsonFile(settings, SETTINGS_FILE, settingsFileSha, "update logo");
+    logoChanged = false; logoOldUrl = newUrl;
+    toast("Logo tersimpan ✓");
+  } catch(err) { toast("Gagal: "+err.message); }
+  finally { btn.innerHTML = "Simpan Logo"; btn.disabled = false; }
+}
+
+/* ======================================================
+   HERO IMAGES
+====================================================== */
+function onHeroImagePick(e, idx) {
+  const f = e.target.files[0];
+  if (!f) return;
+  processUploadFile(f, 900, (b64, dataUrl) => {
+    heroB64[idx] = b64; heroChanged[idx] = true;
+    setHeroSlotImage(idx, dataUrl);
+  });
+}
+
+function setHeroSlotImage(idx, src) {
+  const slot = document.getElementById(`heroSlot${idx}`);
+  // Hapus img lama jika ada
+  slot.querySelectorAll("img").forEach(el => el.remove());
+  const img = document.createElement("img");
+  img.src = src; img.style.cssText = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover";
+  slot.appendChild(img);
+  document.getElementById(`heroDel${idx}`).classList.add("show");
+  document.getElementById(`heroSlotNum${idx}`).style.display = "none";
+}
+
+function removeHeroImage(e, idx) {
+  e.stopPropagation();
+  heroB64[idx] = null; heroChanged[idx] = true;
+  const slot = document.getElementById(`heroSlot${idx}`);
+  slot.querySelectorAll("img").forEach(el => el.remove());
+  document.getElementById(`heroDel${idx}`).classList.remove("show");
+  document.getElementById(`heroSlotNum${idx}`).style.display = "";
+}
+
+async function saveHeroImages() {
+  if (!heroChanged.some(Boolean)) { toast("Belum ada perubahan foto hero."); return; }
+  const btn = event.target;
+  btn.innerHTML = `<span class="spinner"></span> Menyimpan...`; btn.disabled = true;
+  try {
+    for (let i=0; i<3; i++) {
+      if (!heroChanged[i]) continue;
+      if (heroB64[i]) {
+        settings.heroImages[i] = await uploadFileToBranch(heroB64[i], `${IMAGES_DIR}/hero_${i}.jpg`, `update hero slide ${i+1}`);
+      } else {
+        settings.heroImages[i] = "";
+      }
+    }
+    settingsFileSha = await saveJsonFile(settings, SETTINGS_FILE, settingsFileSha, "update hero images");
+    heroChanged = [false,false,false];
+    toast("Foto hero tersimpan ✓");
+  } catch(err) { toast("Gagal: "+err.message); }
+  finally { btn.innerHTML = "Simpan Foto Hero"; btn.disabled = false; }
+}
+
+/* ======================================================
+   TESTIMONI
+====================================================== */
+function renderTestiGrid() {
+  const grid = document.getElementById("testiGrid");
+  grid.innerHTML = testiSlots.map((slot, i) => `
+    <div class="testi-slot" id="testiSlot${i}">
+      <input type="file" accept="image/*" onchange="onTestiPick(event,${i})"/>
+      ${slot.url ? `<img src="${slot.url}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>` : ""}
+      <button type="button" class="testi-del-btn ${slot.url?'show':''}" id="testiDel${i}" onclick="removeTestiSlot(event,${i})">×</button>
+      ${!slot.url ? `<div class="testi-slot-icon">📸</div><div class="testi-slot-label">Foto ${i+1}</div>` : ""}
+    </div>
+  `).join("");
+}
+
+function onTestiPick(e, idx) {
+  const f = e.target.files[0];
+  if (!f) return;
+  processUploadFile(f, 800, (b64, dataUrl) => {
+    testiSlots[idx].b64     = b64;
+    testiSlots[idx].changed = true;
+    testiSlots[idx].url     = dataUrl; // preview
+    renderTestiGrid();
+  });
+}
+
+function removeTestiSlot(e, idx) {
+  e.stopPropagation();
+  testiSlots[idx] = { url:null, b64:null, changed:true };
+  renderTestiGrid();
+}
+
+async function saveTestimoni() {
+  const changed = testiSlots.some(s => s.changed);
+  if (!changed) { toast("Belum ada perubahan testimoni."); return; }
+  const btn = event.target;
+  btn.innerHTML = `<span class="spinner"></span> Menyimpan...`; btn.disabled = true;
+  try {
+    const finalUrls = [];
+    for (let i=0; i<testiSlots.length; i++) {
+      const slot = testiSlots[i];
+      if (!slot.changed) {
+        // Pakai URL lama (dari settings) jika ada
+        const oldUrl = settings.testimoni && settings.testimoni[i];
+        if (oldUrl) finalUrls.push(oldUrl);
+      } else if (slot.b64) {
+        const url = await uploadFileToBranch(slot.b64, `${IMAGES_DIR}/testi_${i}_${Date.now()}.jpg`, `upload testimoni ${i+1}`);
+        finalUrls.push(url);
+      }
+      // jika null/changed & no b64 → tidak dimasukkan (dihapus)
+    }
+    settings.testimoni = finalUrls;
+    settingsFileSha = await saveJsonFile(settings, SETTINGS_FILE, settingsFileSha, "update testimoni");
+    // Reset changed flags
+    testiSlots.forEach(s => { s.changed = false; if(!s.b64) {}; });
+    toast("Testimoni tersimpan ✓");
+  } catch(err) { toast("Gagal: "+err.message); }
+  finally { btn.innerHTML = "Simpan Testimoni"; btn.disabled = false; }
+}
+
+/* ======================================================
+   PRODUCT IMAGE
+====================================================== */
+function setupDragDrop(areaId, handler) {
+  const area = document.getElementById(areaId);
+  if (!area) return;
+  area.addEventListener("dragover",  e => { e.preventDefault(); area.classList.add("drag"); });
+  area.addEventListener("dragleave", () => area.classList.remove("drag"));
+  area.addEventListener("drop", e => { e.preventDefault(); area.classList.remove("drag"); handler(e.dataTransfer.files[0]); });
+}
+
+function onProductImageDrop(file) { if(file) processUploadFile(file, 800, applyProductImage); }
+function onProductImagePick(e)   { const f=e.target.files[0]; if(f) processUploadFile(f, 800, applyProductImage); }
+
+function applyProductImage(b64, dataUrl) {
+  prodImgB64 = b64; prodImgChanged = true;
+  showUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove", dataUrl);
+}
+
+function removeProductImage(e) {
+  e.stopPropagation();
+  prodImgB64 = null; prodImgChanged = true;
+  hideUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove");
+  document.getElementById("fImage").value = "";
+}
+
+/* ======================================================
    PRODUCTS CRUD
-============================================================ */
-function renderProducts() {
+====================================================== */
+function renderProductList() {
   const el = document.getElementById("productList");
-  if (!products.length) { el.innerHTML = `<div class="loading-overlay">Belum ada produk.</div>`; return; }
+  if (!products.length) { el.innerHTML=`<div class="loading-overlay">Belum ada produk.</div>`; return; }
   el.innerHTML = products.map(p => `
     <div class="product-row">
       <div class="product-thumb">
-        ${p.image
-          ? `<img src="${p.image}" alt="${p.name}" loading="lazy"/>`
-          : p.emoji}
+        ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy"/>` : p.emoji}
       </div>
       <div class="product-info">
         <strong>${p.name}${!p.active?'<span class="badge-off">nonaktif</span>':''}</strong>
@@ -487,67 +766,48 @@ async function saveProduct() {
   const emoji  = document.getElementById("fEmoji").value;
   const active = document.getElementById("fActive").checked;
 
-  if (!name)              { toast("Isi nama produk dulu!"); return; }
-  if (!price || price<1)  { toast("Isi harga yang valid!"); return; }
-  if (!sizes.length)      { toast("Isi minimal 1 ukuran!"); return; }
-  if (!colors.length)     { toast("Isi minimal 1 warna!"); return; }
+  if (!name)             { toast("Isi nama produk dulu!"); return; }
+  if (!price||price<1)   { toast("Isi harga yang valid!"); return; }
+  if (!sizes.length)     { toast("Isi minimal 1 ukuran!"); return; }
+  if (!colors.length)    { toast("Isi minimal 1 warna!"); return; }
 
   const btn = document.getElementById("saveBtn");
-  btn.innerHTML = `<span class="spinner"></span> Menyimpan...`;
-  btn.disabled  = true;
+  btn.innerHTML = `<span class="spinner"></span> Menyimpan...`; btn.disabled = true;
 
   try {
-    // --- Upload gambar jika ada perubahan ---
-    let imageUrl = imageName || null; // URL lama atau null
-
-    if (imageChanged) {
-      if (imageB64) {
-        // Ada gambar baru → upload
-        const ext      = "jpg";
-        const fname    = `prod_${Date.now()}.${ext}`;
-        const progress = document.getElementById("uploadProgress");
-        const bar      = document.getElementById("uploadProgressBar");
-        progress.classList.add("show"); bar.style.width = "40%";
-        imageUrl = await uploadImage(imageB64, fname);
+    let imageUrl = prodImgOldUrl;
+    if (prodImgChanged) {
+      if (prodImgB64) {
+        const bar = document.getElementById("productImgBar");
+        const pg  = document.getElementById("productImgProgress");
+        pg.classList.add("show"); bar.style.width = "40%";
+        imageUrl = await uploadFileToBranch(prodImgB64, `${IMAGES_DIR}/prod_${Date.now()}.jpg`, `upload foto: ${name}`);
         bar.style.width = "100%";
-        setTimeout(() => progress.classList.remove("show"), 600);
-      } else {
-        // Gambar dihapus
-        imageUrl = null;
-      }
+        setTimeout(() => pg.classList.remove("show"), 500);
+      } else { imageUrl = null; }
     }
 
-    // --- Buat / update data produk ---
     let newProducts;
     if (editingId) {
-      newProducts = products.map(p =>
-        p.id===editingId ? {...p, name, price, sizes, colors, emoji, active, image: imageUrl} : p
-      );
+      newProducts = products.map(p => p.id===editingId ? {...p, name, price, sizes, colors, emoji, active, image:imageUrl||null} : p);
     } else {
-      const newId = products.length ? Math.max(...products.map(p=>p.id)) + 1 : 1;
-      newProducts = [...products, { id:newId, name, price, emoji, sizes, colors, active, image: imageUrl }];
+      const newId = products.length ? Math.max(...products.map(p=>p.id))+1 : 1;
+      newProducts = [...products, {id:newId, name, price, emoji, sizes, colors, active, image:imageUrl||null}];
     }
 
-    await saveToGitHub(newProducts, editingId ? `update produk: ${name}` : `tambah produk: ${name}`);
+    productFileSha = await saveJsonFile(newProducts, PRODUCTS_FILE, productFileSha, editingId?`update: ${name}`:`tambah: ${name}`);
     products = newProducts;
-    renderProducts();
+    renderProductList();
     cancelEdit();
     toast(editingId ? "Produk diperbarui ✓" : "Produk ditambahkan ✓");
-  } catch(err) {
-    toast("Gagal menyimpan: " + err.message);
-  } finally {
-    btn.innerHTML = "Simpan Produk";
-    btn.disabled  = false;
-  }
+  } catch(err) { toast("Gagal: "+err.message); }
+  finally { btn.innerHTML = "Simpan Produk"; btn.disabled = false; }
 }
 
 function editProduct(id) {
   const p = products.find(x=>x.id===id);
   if (!p) return;
-  editingId    = id;
-  imageChanged = false;
-  imageName    = p.image || null;
-
+  editingId = id; prodImgChanged = false; prodImgOldUrl = p.image||null;
   document.getElementById("formTitle").textContent   = "✏️ Edit Produk";
   document.getElementById("fName").value             = p.name;
   document.getElementById("fPrice").value            = p.price;
@@ -556,30 +816,22 @@ function editProduct(id) {
   document.getElementById("fActive").checked         = p.active;
   document.getElementById("cancelBtn").style.display = "inline-flex";
   document.getElementById("saveBtn").textContent     = "Simpan Perubahan";
-  selectEmoji(p.emoji);
-
-  // Tampilkan gambar lama
-  if (p.image) {
-    showPreview(p.image);
-  } else {
-    resetImageUI();
-  }
-
-  window.scrollTo({top:0, behavior:"smooth"});
+  selectEmoji(p.emoji||"👗");
+  if (p.image) showUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove", p.image);
+  else hideUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove");
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function cancelEdit() {
-  editingId = null;
+  editingId = null; prodImgB64 = null; prodImgChanged = false; prodImgOldUrl = null;
   document.getElementById("formTitle").textContent   = "➕ Tambah Produk";
-  document.getElementById("fName").value             = "";
-  document.getElementById("fPrice").value            = "";
-  document.getElementById("fSizes").value            = "";
-  document.getElementById("fColors").value           = "";
+  ["fName","fPrice","fSizes","fColors"].forEach(id => document.getElementById(id).value = "");
   document.getElementById("fActive").checked         = true;
   document.getElementById("cancelBtn").style.display = "none";
   document.getElementById("saveBtn").textContent     = "Simpan Produk";
   selectEmoji("👗");
-  resetImageUI();
+  hideUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove");
+  document.getElementById("fImage").value = "";
 }
 
 async function deleteProduct(id) {
@@ -587,16 +839,14 @@ async function deleteProduct(id) {
   if (!confirm(`Hapus "${p.name}"?`)) return;
   const newProducts = products.filter(x=>x.id!==id);
   try {
-    await saveToGitHub(newProducts, `hapus produk: ${p.name}`);
-    products = newProducts;
-    renderProducts();
-    toast("Produk dihapus ✓");
+    productFileSha = await saveJsonFile(newProducts, PRODUCTS_FILE, productFileSha, `hapus: ${p.name}`);
+    products = newProducts; renderProductList(); toast("Produk dihapus ✓");
   } catch { toast("Gagal menghapus."); }
 }
 
-/* ============================================================
+/* ======================================================
    ORDERS
-============================================================ */
+====================================================== */
 async function loadOrders() {
   const el = document.getElementById("orderList");
   try {
@@ -610,22 +860,59 @@ async function loadOrders() {
         <div class="order-header">
           <span class="order-num">#${orders.length-i}</span>
           <strong>${o.nama}</strong>
-          <span style="font-size:.82rem;color:#666">· ${o.wa}</span>
+          <span style="font-size:.8rem;color:#888">· ${o.wa}</span>
           <span class="order-time">${o.waktu||""}</span>
         </div>
-        <div class="order-items">${(o.items||[]).map(it=>`${it.emoji} ${it.name} – ${it.size} – ${it.color} ×${it.qty} = ${fmt(it.price*it.qty)}`).join("<br>")}</div>
-        <div class="order-detail">
-          📦 ${o.alamat}${o.catatan?`<br>📝 ${o.catatan}`:""}
-          <br><strong>Total: ${fmt(o.total)}</strong>
-        </div>
+        <div class="order-items">${(o.items||[]).map(it=>`${it.emoji||""} ${it.name} – ${it.size} – ${it.color} ×${it.qty} = ${fmt(it.price*it.qty)}`).join("<br>")}</div>
+        <div class="order-detail">📦 ${o.alamat}${o.catatan?`<br>📝 ${o.catatan}`:""}<br><strong>Total: ${fmt(o.total)}</strong></div>
       </div>
     `).join("");
   } catch { el.innerHTML=`<div class="loading-overlay">Gagal memuat pesanan.</div>`; }
 }
 
-/* ============================================================
+/* ======================================================
+   IMAGE UTILS
+====================================================== */
+function processUploadFile(file, maxPx, callback) {
+  if (!file.type.startsWith("image/")) { toast("File harus berupa gambar!"); return; }
+  if (file.size > 3*1024*1024) { toast("Gambar terlalu besar (maks 3 MB)!"); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => {
+      let w=img.width, h=img.height;
+      if (w>maxPx||h>maxPx) {
+        if(w>h){h=Math.round(h*maxPx/w);w=maxPx}
+        else{w=Math.round(w*maxPx/h);h=maxPx}
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width=w; canvas.height=h;
+      canvas.getContext("2d").drawImage(img,0,0,w,h);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+      callback(dataUrl.split(",")[1], dataUrl);
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function showUploadPreview(previewId, placeholderId, removeBtnId, src) {
+  document.getElementById(previewId).src = src;
+  document.getElementById(previewId).classList.add("show");
+  document.getElementById(removeBtnId).classList.add("show");
+  document.getElementById(placeholderId).style.display = "none";
+}
+
+function hideUploadPreview(previewId, placeholderId, removeBtnId) {
+  document.getElementById(previewId).src = "";
+  document.getElementById(previewId).classList.remove("show");
+  document.getElementById(removeBtnId).classList.remove("show");
+  document.getElementById(placeholderId).style.display = "";
+}
+
+/* ======================================================
    HELPERS
-============================================================ */
+====================================================== */
 const fmt = n => "Rp " + n.toLocaleString("id-ID");
 
 function toast(msg) {
