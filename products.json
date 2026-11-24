@@ -54,5 +54,19 @@
     ],
     "active": true,
     "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525383043.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Khiban Biskuit HALUS bahan rayon tancel",
+    "price": 60000,
+    "emoji": "👗",
+    "sizes": [
+      "All Size"
+    ],
+    "colors": [
+      "Pink Blush"
+    ],
+    "active": true,
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525429338.jpg"
   }
 ]
