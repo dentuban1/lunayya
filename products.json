@@ -26,5 +26,19 @@
     ],
     "active": true,
     "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525116843.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Khiban Hitam HALUS bahan rayon tancel",
+    "price": 60000,
+    "emoji": "👗",
+    "sizes": [
+      "All Size"
+    ],
+    "colors": [
+      "Hitam"
+    ],
+    "active": true,
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525267499.jpg"
   }
 ]
