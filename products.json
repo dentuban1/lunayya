@@ -12,5 +12,19 @@
     ],
     "active": true,
     "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525077101.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Khiban Coffee HALUS bahan rayon tancel",
+    "price": 60000,
+    "emoji": "👗",
+    "sizes": [
+      "All Size"
+    ],
+    "colors": [
+      "Coffee"
+    ],
+    "active": true,
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525116843.jpg"
   }
 ]
