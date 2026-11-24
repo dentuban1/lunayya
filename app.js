@@ -5,57 +5,8 @@
 =================================================== */
 const WHATSAPP_NUMBER = "62881026285218"; // ← GANTI DI SINI
 
-/* ===== DATA PRODUK ===== */
-const products = [
-  {
-    id: 1,
-    name: "Dress Floral Chic",
-    price: 185000,
-    emoji: "👗",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Pink", "Putih", "Kuning"],
-  },
-  {
-    id: 2,
-    name: "Blouse Casual Linen",
-    price: 135000,
-    emoji: "👚",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["Putih", "Cream", "Biru Muda"],
-  },
-  {
-    id: 3,
-    name: "Rok Plisket Midi",
-    price: 155000,
-    emoji: "🩱",
-    sizes: ["S", "M", "L"],
-    colors: ["Hitam", "Coklat", "Dusty Pink"],
-  },
-  {
-    id: 4,
-    name: "Kemeja Tie-Dye",
-    price: 120000,
-    emoji: "🎨",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Lavender", "Mint", "Peach"],
-  },
-  {
-    id: 5,
-    name: "Cardigan Knit Soft",
-    price: 210000,
-    emoji: "🧥",
-    sizes: ["S", "M", "L"],
-    colors: ["Cream", "Abu", "Mauve"],
-  },
-  {
-    id: 6,
-    name: "Celana Kulot Rayon",
-    price: 145000,
-    emoji: "👖",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Hitam", "Navy", "Coklat"],
-  },
-];
+/* ===== DATA PRODUK (dari products.json) ===== */
+let products = [];
 
 /* ===== STATE ===== */
 let cart = [];
@@ -224,7 +175,15 @@ function buildWAMessage() {
   return msg;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  // Muat produk dari products.json
+  try {
+    const res = await fetch("products.json?v=" + Date.now());
+    const data = await res.json();
+    products = data.filter(p => p.active !== false);
+  } catch (e) {
+    console.warn("Gagal memuat products.json", e);
+  }
   renderProducts();
   initSlider();
   updateCart();
