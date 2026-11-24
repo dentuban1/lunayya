@@ -80,7 +80,11 @@
       "Pink Blush"
     ],
     "active": true,
-    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525429338.jpg"
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525429338.jpg",
+    "images": [
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525429338.jpg",
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795526401048_zj1k.jpg"
+    ]
   },
   {
     "id": 6,
