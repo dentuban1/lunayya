@@ -1,24 +1,5 @@
 [
   {
-    "id": 2,
-    "name": "Blouse Casual Linen",
-    "price": 135000,
-    "emoji": "ð",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "colors": [
-      "Putih",
-      "Cream",
-      "Biru Muda"
-    ],
-    "active": true
-  },
-  {
     "id": 3,
     "name": "Rok Plisket Midi",
     "price": 155000,
