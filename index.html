@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John Clothes – Female Fashion</title>
+  <meta name="description" content="Toko baju wanita online. Bahan nyaman, jahitan rapi, model kekinian. Pesan langsung via WhatsApp." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-brand">👗 John Clothes</a>
+      <ul class="nav-links">
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#katalog">Katalog</a></li>
+        <li><a href="#cara-pesan">Cara Pesan</a></li>
+        <li><a href="#pesanan">Pesanan</a></li>
+      </ul>
+      <button class="cart-btn" id="cartBtn" onclick="scrollToOrder()">
+        🛍️ Pesanan <span id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="beranda">
+    <div class="hero-content">
+      <p class="hero-badge">✨ Penawaran Spesial Minggu Ini</p>
+      <h1>Stylish<br><span>Female Clothes</span></h1>
+      <p class="hero-desc">Bahan nyaman, jahitan rapi, model kekinian. Pilih ukuran &amp; warna favoritmu, lalu pesan langsung lewat WhatsApp.</p>
+      <div class="hero-buttons">
+        <a href="#katalog" class="btn btn-primary">Belanja Sekarang</a>
+        <a href="#cara-pesan" class="btn btn-outline">Cara Pesan</a>
+      </div>
+      <div class="hero-social-proof">
+        <span class="avatars">🧕👩👩‍🦰</span>
+        <div>
+          <strong>Pelanggan Puas</strong>
+          <div class="stars">★★★★★ <span>4.9 dari ribuan ulasan</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-badges">
+      <div class="badge-pill">👗</div>
+      <div class="badge-pill">✨ Produk Baru</div>
+      <div class="badge-pill">🚚 Kirim ke Seluruh Indonesia</div>
+    </div>
+  </section>
+
+  <!-- KATALOG -->
+  <section class="katalog" id="katalog">
+    <div class="section-container">
+      <h2>Katalog Produk</h2>
+      <p class="section-sub">Geser ke kiri / kanan untuk melihat produk. Pilih ukuran &amp; warna, lalu tekan "Tambah ke Pesanan".</p>
+
+      <div class="slider-wrapper">
+        <button class="slider-arrow left" id="sliderPrev">&#8249;</button>
+        <div class="product-track" id="productTrack"></div>
+        <button class="slider-arrow right" id="sliderNext">&#8250;</button>
+      </div>
+      <p class="swipe-hint">⟷ geser untuk melihat lebih banyak</p>
+    </div>
+  </section>
+
+  <!-- CARA PESAN -->
+  <section class="cara-pesan" id="cara-pesan">
+    <div class="section-container">
+      <h2>Cara Pesan</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <p>Pilih produk, ukuran &amp; warna lalu tambahkan ke pesanan.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <p>Isi nama, alamat, dan nomor WhatsApp kamu.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <p>Kirim — pesanan otomatis terbuka di WhatsApp penjual.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PESANAN -->
+  <section class="pesanan" id="pesanan">
+    <div class="section-container">
+      <h2>Rekap Pesanan</h2>
+      <p class="section-sub">Periksa kembali pesananmu, isi data pengiriman, lalu kirim lewat WhatsApp.</p>
+
+      <div class="order-grid">
+        <!-- Daftar produk -->
+        <div class="order-card">
+          <h3>🛍️ Produk yang dipesan</h3>
+          <div id="orderList"><p class="empty-msg">Belum ada produk ditambahkan.</p></div>
+          <div class="order-total">Total <strong id="orderTotal">Rp 0</strong></div>
+        </div>
+
+        <!-- Form pengiriman -->
+        <div class="order-card">
+          <h3>📦 Data pengiriman</h3>
+          <form id="orderForm" novalidate>
+            <div class="form-group">
+              <label for="nama">Nama lengkap</label>
+              <input type="text" id="nama" placeholder="Nama lengkap kamu" autocomplete="name" />
+              <span class="form-err" id="namaErr">Isi nama lengkap (min. 2 huruf).</span>
+            </div>
+            <div class="form-group">
+              <label for="wa">Nomor WhatsApp</label>
+              <input type="tel" id="wa" placeholder="08xxxxxxxxxx" autocomplete="tel" />
+              <span class="form-err" id="waErr">Nomor WhatsApp tidak valid.</span>
+            </div>
+            <div class="form-group">
+              <label for="alamat">Alamat lengkap</label>
+              <textarea id="alamat" rows="3" placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota, Kode Pos"></textarea>
+              <span class="form-err" id="alamatErr">Isi alamat selengkap mungkin (min. 10 karakter).</span>
+            </div>
+            <div class="form-group">
+              <label for="catatan">Catatan (opsional)</label>
+              <textarea id="catatan" rows="2" placeholder="Contoh: warna lebih terang, jangan dilipat, dll."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:6px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.547 5.874L0 24l6.302-1.521A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.001-1.368l-.36-.214-3.733.9.939-3.638-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+              Kirim Pesanan via WhatsApp
+            </button>
+            <p class="form-note">Data hanya dipakai untuk memproses pesananmu.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p><strong>John Clothes</strong></p>
+    <p>Pesan lewat WhatsApp · Kirim ke seluruh Indonesia</p>
+    <p class="footer-copy">© <span id="year"></span> Semua hak dilindungi</p>
+  </footer>
+
+  <!-- STICKY CART -->
+  <div class="sticky-cart" id="stickyCart" onclick="scrollToOrder()">
+    <span id="stickyCount">0</span> item · <span id="stickyTotal">Rp 0</span>
+    <strong>Lihat Pesanan →</strong>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-icon">✓</div>
+      <h3>Pesanan siap dikirim!</h3>
+      <p>WhatsApp akan terbuka dengan rincian pesananmu. Tekan <strong>Kirim</strong> di WhatsApp untuk menyelesaikan. Jika tidak terbuka, klik tombol di bawah.</p>
+      <a href="#" id="waFallback" class="btn btn-primary" target="_blank" rel="noopener">Buka WhatsApp</a>
+      <button class="btn btn-outline" onclick="closeModal()">Tutup</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
