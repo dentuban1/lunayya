@@ -62,7 +62,11 @@
       "Ivory"
     ],
     "active": true,
-    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525383043.jpg"
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525383043.jpg",
+    "images": [
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525383043.jpg",
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795526371912_08au.jpg"
+    ]
   },
   {
     "id": 5,
