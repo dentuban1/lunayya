@@ -29,7 +29,12 @@
       "Coffee"
     ],
     "active": true,
-    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525116843.jpg"
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525116843.jpg",
+    "images": [
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525116843.jpg",
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795526310567_44tr.jpg",
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795526313051_4q7f.jpg"
+    ]
   },
   {
     "id": 3,
