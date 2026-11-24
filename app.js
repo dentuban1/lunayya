@@ -99,7 +99,7 @@ function renderProducts() {
   const track = document.getElementById("productTrack");
   if (!track) return;
   if (!products.length) {
-    track.innerHTML = `<div style="padding:40px;color:#aaa;text-align:center;width:100%">Belum ada produk. Tambahkan di Admin Panel.</div>`;
+    track.innerHTML = `<div style="grid-column:1/-1;padding:40px;color:#aaa;text-align:center">Belum ada produk. Tambahkan di Admin Panel.</div>`;
     return;
   }
   track.innerHTML = products.map(p => {
@@ -120,14 +120,14 @@ function renderProducts() {
         <div class="product-price">${fmt(p.price)}</div>
         <div class="product-controls">
           <select id="size-${p.id}" aria-label="Pilih ukuran">
-            <option value="">— Pilih Ukuran —</option>
+            <option value="">— Ukuran —</option>
             ${p.sizes.map(s=>`<option>${s}</option>`).join("")}
           </select>
           <select id="color-${p.id}" aria-label="Pilih warna">
-            <option value="">— Pilih Warna —</option>
+            <option value="">— Warna —</option>
             ${p.colors.map(c=>`<option>${c}</option>`).join("")}
           </select>
-          <button class="add-btn" onclick="addToCart(${p.id})">+ Tambah ke Pesanan</button>
+          <button class="add-btn" onclick="addToCart(${p.id})">+ Tambah</button>
         </div>
       </div>
     </div>`;
@@ -211,15 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }, {passive:true});
 });
 
-function initSlider() {
-  const track = document.getElementById("productTrack");
-  const prev  = document.getElementById("sliderPrev");
-  const next  = document.getElementById("sliderNext");
-  if (!track||!prev||!next) return;
-  prev.addEventListener("click", () => track.scrollBy({left:-260,behavior:"smooth"}));
-  next.addEventListener("click", () => track.scrollBy({left: 260,behavior:"smooth"}));
-}
-
 /* ============================================================
    CART
 ============================================================ */
@@ -253,6 +244,8 @@ function updateCart() {
   document.getElementById("stickyCount").textContent = qty;
   document.getElementById("stickyTotal").textContent = fmt(total);
   document.getElementById("stickyCart").classList.toggle("show", qty>0);
+  // padding-bottom body agar konten tidak tertutup sticky cart di mobile
+  document.body.style.paddingBottom = qty > 0 && window.innerWidth < 900 ? "60px" : "";
 
   const list = document.getElementById("orderList");
   if (!cart.length) {
@@ -319,7 +312,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadSettings();
 
   renderProducts();
-  initSlider();
   updateCart();
   resetCarouselTimer();
   document.getElementById("year").textContent = new Date().getFullYear();
