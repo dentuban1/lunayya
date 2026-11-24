@@ -3,7 +3,7 @@
    Ganti WHATSAPP_NUMBER dengan nomor WA penjual (tanpa +)
    Contoh: "628123456789"
 =================================================== */
-const WHATSAPP_NUMBER = "6281234567890"; // ← GANTI DI SINI
+const WHATSAPP_NUMBER = "62881026285218"; // ← GANTI DI SINI
 
 /* ===== DATA PRODUK ===== */
 const products = [
