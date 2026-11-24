@@ -1,23 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "Dress Floral Chic",
-    "price": 185000,
-    "emoji": "ð",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "colors": [
-      "Pink",
-      "Putih",
-      "Kuning"
-    ],
-    "active": true
-  },
-  {
     "id": 2,
     "name": "Blouse Casual Linen",
     "price": 135000,
