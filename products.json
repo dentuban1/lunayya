@@ -35,24 +35,6 @@
     "active": true
   },
   {
-    "id": 6,
-    "name": "Celana Kulot Rayon",
-    "price": 145000,
-    "emoji": "ð",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "colors": [
-      "Hitam",
-      "Navy",
-      "Coklat"
-    ],
-    "active": true
-  },
-  {
     "id": 7,
     "name": "One set floral",
     "price": 65000,
