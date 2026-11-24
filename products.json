@@ -3,54 +3,126 @@
     "id": 1,
     "name": "Dress Floral Chic",
     "price": 185000,
-    "emoji": "👗",
-    "sizes": ["S", "M", "L", "XL"],
-    "colors": ["Pink", "Putih", "Kuning"],
+    "emoji": "ð",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Pink",
+      "Putih",
+      "Kuning"
+    ],
     "active": true
   },
   {
     "id": 2,
     "name": "Blouse Casual Linen",
     "price": 135000,
-    "emoji": "👚",
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "colors": ["Putih", "Cream", "Biru Muda"],
+    "emoji": "ð",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Putih",
+      "Cream",
+      "Biru Muda"
+    ],
     "active": true
   },
   {
     "id": 3,
     "name": "Rok Plisket Midi",
     "price": 155000,
-    "emoji": "🩱",
-    "sizes": ["S", "M", "L"],
-    "colors": ["Hitam", "Coklat", "Dusty Pink"],
+    "emoji": "ð©±",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Hitam",
+      "Coklat",
+      "Dusty Pink"
+    ],
     "active": true
   },
   {
     "id": 4,
     "name": "Kemeja Tie-Dye",
     "price": 120000,
-    "emoji": "🎨",
-    "sizes": ["S", "M", "L", "XL"],
-    "colors": ["Lavender", "Mint", "Peach"],
+    "emoji": "ð¨",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Lavender",
+      "Mint",
+      "Peach"
+    ],
     "active": true
   },
   {
     "id": 5,
     "name": "Cardigan Knit Soft",
     "price": 210000,
-    "emoji": "🧥",
-    "sizes": ["S", "M", "L"],
-    "colors": ["Cream", "Abu", "Mauve"],
+    "emoji": "ð§¥",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Cream",
+      "Abu",
+      "Mauve"
+    ],
     "active": true
   },
   {
     "id": 6,
     "name": "Celana Kulot Rayon",
     "price": 145000,
-    "emoji": "👖",
-    "sizes": ["S", "M", "L", "XL"],
-    "colors": ["Hitam", "Navy", "Coklat"],
+    "emoji": "ð",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Hitam",
+      "Navy",
+      "Coklat"
+    ],
     "active": true
+  },
+  {
+    "id": 7,
+    "name": "One set floral",
+    "price": 65000,
+    "emoji": "👗",
+    "sizes": [
+      "L",
+      "XL",
+      "Jumbo"
+    ],
+    "colors": [
+      "merah",
+      "coklat",
+      "kuning",
+      "pink"
+    ],
+    "active": true,
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795523292162.jpg"
   }
 ]
