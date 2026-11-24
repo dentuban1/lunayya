@@ -1,5 +1,9 @@
 {
   "logo": "",
-  "heroImages": ["", "", ""],
+  "heroImages": [
+    "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/hero_0.jpg",
+    "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/hero_1.jpg",
+    "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/hero_2.jpg"
+  ],
   "testimoni": []
 }
