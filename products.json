@@ -98,6 +98,10 @@
       "Silver"
     ],
     "active": true,
-    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525515556.jpg"
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525515556.jpg",
+    "images": [
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525515556.jpg",
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795526413367_poxi.jpg"
+    ]
   }
 ]
