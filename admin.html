@@ -34,7 +34,7 @@
     .topbar-brand{font-weight:800;font-size:1.1rem;color:var(--pink);flex:1}
     .topbar a{font-size:.85rem;color:#666;text-decoration:none}
     .topbar a:hover{color:var(--pink)}
-    .admin-body{max-width:900px;margin:0 auto;padding:28px 20px}
+    .admin-body{max-width:960px;margin:0 auto;padding:28px 20px}
 
     /* TABS */
     .tabs{display:flex;gap:4px;background:#e8e8ed;border-radius:10px;padding:4px;margin-bottom:28px;width:fit-content}
@@ -50,35 +50,65 @@
     .form-row .form-group{margin-bottom:0}
     .form-group textarea{width:100%;padding:10px 14px;border:1.5px solid #ddd;border-radius:10px;font-size:.88rem;resize:vertical;font-family:inherit}
     .form-group textarea:focus{outline:none;border-color:var(--pink)}
-    .form-actions{display:flex;gap:10px;margin-top:18px}
+    .form-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
     .emoji-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
     .emoji-opt{font-size:1.5rem;cursor:pointer;padding:6px;border-radius:8px;border:2px solid transparent;transition:all .15s}
     .emoji-opt:hover,.emoji-opt.selected{border-color:var(--pink);background:var(--pink-light)}
     .hint{font-size:.78rem;color:#aaa;margin-top:4px}
     input[type=checkbox]{width:16px;height:16px;accent-color:var(--pink);margin-right:6px;cursor:pointer}
 
+    /* IMAGE UPLOAD */
+    .img-upload-area{
+      border:2px dashed #ddd;border-radius:var(--radius);
+      padding:20px;text-align:center;cursor:pointer;
+      transition:border-color .2s,background .2s;
+      position:relative;overflow:hidden;
+      background:#fafafa;min-height:120px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    }
+    .img-upload-area:hover,.img-upload-area.drag{border-color:var(--pink);background:var(--pink-light)}
+    .img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+    .img-preview{width:100%;max-height:200px;object-fit:contain;border-radius:8px;margin-top:8px;display:none}
+    .img-preview.show{display:block}
+    .img-upload-icon{font-size:2rem}
+    .img-upload-label{font-size:.88rem;color:#888}
+    .img-upload-hint{font-size:.75rem;color:#bbb}
+    .img-remove-btn{
+      position:absolute;top:8px;right:8px;
+      background:#fff;border:1px solid #ddd;border-radius:50%;
+      width:26px;height:26px;cursor:pointer;font-size:.9rem;
+      display:none;align-items:center;justify-content:center;
+      z-index:2;transition:background .2s;
+    }
+    .img-remove-btn:hover{background:#fee2e2}
+    .img-remove-btn.show{display:flex}
+    .upload-progress{width:100%;background:#eee;border-radius:99px;height:6px;margin-top:8px;display:none}
+    .upload-progress-bar{height:100%;background:var(--pink);border-radius:99px;width:0;transition:width .3s}
+    .upload-progress.show{display:block}
+
     /* PRODUCT LIST */
     .product-list{display:flex;flex-direction:column;gap:12px}
     .product-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border-radius:var(--radius);box-shadow:0 1px 6px rgba(0,0,0,.06);transition:box-shadow .2s}
     .product-row:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
-    .product-emoji{font-size:2rem;min-width:44px;text-align:center}
-    .product-info{flex:1}
-    .product-info strong{display:block;font-size:.95rem}
+    .product-thumb{width:52px;height:52px;border-radius:10px;object-fit:cover;background:#f9e4f4;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem;overflow:hidden}
+    .product-thumb img{width:100%;height:100%;object-fit:cover}
+    .product-info{flex:1;min-width:0}
+    .product-info strong{display:block;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .product-info span{font-size:.8rem;color:#888}
     .product-price{font-weight:700;color:var(--pink);font-size:.95rem;white-space:nowrap}
-    .product-actions{display:flex;gap:8px}
+    .product-actions{display:flex;gap:8px;flex-shrink:0}
     .badge-off{display:inline-block;background:#fee2e2;color:#dc2626;border-radius:99px;padding:2px 10px;font-size:.72rem;font-weight:600;margin-left:6px}
 
     /* ORDERS */
     .order-row{padding:16px;background:#fff;border-radius:var(--radius);box-shadow:0 1px 6px rgba(0,0,0,.06);margin-bottom:12px}
-    .order-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+    .order-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
     .order-num{background:var(--pink-light);color:var(--pink);border-radius:99px;padding:3px 12px;font-size:.8rem;font-weight:700}
     .order-time{font-size:.78rem;color:#aaa;margin-left:auto}
     .order-detail{font-size:.85rem;color:#444;line-height:1.8}
     .order-items{background:#f9f9f9;border-radius:8px;padding:10px 14px;margin:8px 0;font-size:.83rem}
 
     /* TOAST */
-    .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:12px 24px;border-radius:99px;font-size:.88rem;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+    .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:12px 24px;border-radius:99px;font-size:.88rem;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
     .toast.show{opacity:1}
 
     /* LOADING */
@@ -89,6 +119,7 @@
     @media(max-width:600px){
       .form-row{grid-template-columns:1fr}
       .product-row{flex-wrap:wrap}
+      .product-actions{width:100%}
     }
   </style>
 </head>
@@ -126,11 +157,30 @@
     <div id="tabProducts">
       <div class="card">
         <h2 id="formTitle">➕ Tambah Produk</h2>
+
+        <!-- FOTO -->
+        <div class="form-group" style="margin-bottom:18px">
+          <label>Foto Produk <span style="color:#aaa;font-weight:400">(opsional, maks 1 MB)</span></label>
+          <div class="img-upload-area" id="uploadArea">
+            <input type="file" id="fImage" accept="image/jpeg,image/png,image/webp" onchange="onImagePick(event)"/>
+            <button type="button" class="img-remove-btn" id="imgRemoveBtn" onclick="removeImage(event)">×</button>
+            <div id="uploadPlaceholder">
+              <div class="img-upload-icon">📷</div>
+              <div class="img-upload-label">Klik atau seret foto ke sini</div>
+              <div class="img-upload-hint">JPG / PNG / WEBP · max 1 MB · otomatis dikecilkan</div>
+            </div>
+            <img class="img-preview" id="imgPreview" alt="preview"/>
+            <div class="upload-progress" id="uploadProgress"><div class="upload-progress-bar" id="uploadProgressBar"></div></div>
+          </div>
+        </div>
+
+        <!-- EMOJI (fallback jika tidak ada foto) -->
         <div class="form-group" style="margin-bottom:14px">
-          <label>Ikon Produk</label>
+          <label>Ikon Emoji <span style="color:#aaa;font-weight:400">(tampil jika tidak ada foto)</span></label>
           <div class="emoji-grid" id="emojiGrid"></div>
           <input type="hidden" id="fEmoji" value="👗"/>
         </div>
+
         <div class="form-row">
           <div class="form-group">
             <label>Nama Produk</label>
@@ -170,7 +220,7 @@
     <!-- TAB PESANAN -->
     <div id="tabOrders" style="display:none">
       <div class="card">
-        <h2>📋 Pesanan Masuk <small style="font-weight:400;color:#aaa;font-size:.8rem">(dari file orders.json)</small></h2>
+        <h2>📋 Pesanan Masuk</h2>
         <div id="orderList">
           <div class="loading-overlay">Memuat pesanan...</div>
         </div>
@@ -183,18 +233,24 @@
 
 <script>
 /* ===== CONFIG ===== */
-const REPO_OWNER = "dentuban1";
-const REPO_NAME  = "lunayya";
+const REPO_OWNER    = "dentuban1";
+const REPO_NAME     = "lunayya";
 const PRODUCTS_FILE = "products.json";
+const IMAGES_DIR    = "images";
 
 const EMOJIS = ["👗","👚","👘","🩱","🧥","👖","👒","👜","🎀","🧣","🧤","💄","💍","🛍️","🎨","✨"];
 
-let TOKEN = "";
-let editingId = null;
-let products = [];
-let fileSha = "";
+let TOKEN      = "";
+let editingId  = null;
+let products   = [];
+let fileSha    = "";
+let imageB64   = null;   // base64 string tanpa prefix, null = tidak ada / tidak berubah
+let imageName  = null;   // nama file gambar saat ini (untuk edit)
+let imageChanged = false;
 
-/* ===== LOGIN ===== */
+/* ============================================================
+   LOGIN
+============================================================ */
 async function doLogin() {
   const t = document.getElementById("tokenInput").value.trim();
   if (!t) return;
@@ -214,25 +270,23 @@ function doLogout() {
   TOKEN = "";
   localStorage.removeItem("jc_token");
   document.getElementById("adminScreen").style.display = "none";
-  document.getElementById("loginScreen").style.display = "flex";
+  document.getElementById("loginScreen").style.display  = "flex";
   document.getElementById("tokenInput").value = "";
 }
 
-/* ===== INIT ===== */
+/* ============================================================
+   INIT
+============================================================ */
 window.addEventListener("DOMContentLoaded", () => {
   buildEmojiGrid();
+  setupDragDrop();
   const saved = localStorage.getItem("jc_token");
-  if (saved) {
-    document.getElementById("tokenInput").value = saved;
-    TOKEN = saved;
-    doLogin();
-  }
+  if (saved) { TOKEN = saved; document.getElementById("tokenInput").value = saved; doLogin(); }
   document.getElementById("tokenInput").addEventListener("keydown", e => { if(e.key==="Enter") doLogin(); });
 });
 
 function buildEmojiGrid() {
-  const g = document.getElementById("emojiGrid");
-  g.innerHTML = EMOJIS.map(e =>
+  document.getElementById("emojiGrid").innerHTML = EMOJIS.map(e =>
     `<span class="emoji-opt${e==="👗"?" selected":""}" onclick="selectEmoji('${e}')">${e}</span>`
   ).join("");
 }
@@ -248,7 +302,9 @@ function showAdmin() {
   loadProducts();
 }
 
-/* ===== TABS ===== */
+/* ============================================================
+   TABS
+============================================================ */
 function showTab(tab) {
   document.getElementById("tabProducts").style.display = tab==="products" ? "block" : "none";
   document.getElementById("tabOrders").style.display   = tab==="orders"   ? "block" : "none";
@@ -258,7 +314,90 @@ function showTab(tab) {
   if (tab==="orders") loadOrders();
 }
 
-/* ===== GITHUB API ===== */
+/* ============================================================
+   IMAGE HANDLING
+============================================================ */
+function setupDragDrop() {
+  const area = document.getElementById("uploadArea");
+  area.addEventListener("dragover",  e => { e.preventDefault(); area.classList.add("drag"); });
+  area.addEventListener("dragleave", () => area.classList.remove("drag"));
+  area.addEventListener("drop", e => {
+    e.preventDefault(); area.classList.remove("drag");
+    const file = e.dataTransfer.files[0];
+    if (file) processImageFile(file);
+  });
+}
+
+function onImagePick(e) {
+  const file = e.target.files[0];
+  if (file) processImageFile(file);
+}
+
+function processImageFile(file) {
+  if (!file.type.startsWith("image/")) { toast("File harus berupa gambar!"); return; }
+  if (file.size > 2 * 1024 * 1024) { toast("Gambar terlalu besar (maks 2 MB)!"); return; }
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    // Resize menggunakan canvas
+    const img = new Image();
+    img.onload = () => {
+      const MAX = 800;
+      let w = img.width, h = img.height;
+      if (w > MAX || h > MAX) {
+        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+        else       { w = Math.round(w * MAX / h); h = MAX; }
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.82);
+      imageB64     = dataUrl.split(",")[1]; // base64 murni
+      imageChanged = true;
+      showPreview(dataUrl);
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function showPreview(src) {
+  const preview   = document.getElementById("imgPreview");
+  const removeBtn = document.getElementById("imgRemoveBtn");
+  const ph        = document.getElementById("uploadPlaceholder");
+  preview.src = src;
+  preview.classList.add("show");
+  removeBtn.classList.add("show");
+  ph.style.display = "none";
+}
+
+function removeImage(e) {
+  e.stopPropagation();
+  imageB64     = null;
+  imageChanged = true;
+  const preview   = document.getElementById("imgPreview");
+  const removeBtn = document.getElementById("imgRemoveBtn");
+  const ph        = document.getElementById("uploadPlaceholder");
+  preview.src = ""; preview.classList.remove("show");
+  removeBtn.classList.remove("show");
+  ph.style.display = "";
+  document.getElementById("fImage").value = "";
+}
+
+function resetImageUI() {
+  imageB64 = null; imageName = null; imageChanged = false;
+  const preview   = document.getElementById("imgPreview");
+  const removeBtn = document.getElementById("imgRemoveBtn");
+  const ph        = document.getElementById("uploadPlaceholder");
+  preview.src = ""; preview.classList.remove("show");
+  removeBtn.classList.remove("show");
+  ph.style.display = "";
+  document.getElementById("fImage").value = "";
+}
+
+/* ============================================================
+   GITHUB API
+============================================================ */
 async function ghFetch(url, token, options={}) {
   return fetch(url, {
     ...options,
@@ -271,11 +410,30 @@ async function ghFetch(url, token, options={}) {
   });
 }
 
+async function getFileSha(path) {
+  const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`);
+  if (r.status === 404) return null;
+  const d = await r.json();
+  return d.sha || null;
+}
+
+async function uploadImage(b64, filename) {
+  const path = `${IMAGES_DIR}/${filename}`;
+  const sha  = await getFileSha(path);
+  const body = { message: `upload gambar: ${filename}`, content: b64 };
+  if (sha) body.sha = sha;
+  const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, TOKEN, {
+    method: "PUT", body: JSON.stringify(body)
+  });
+  if (!r.ok) throw new Error("Gagal upload gambar");
+  return `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${path}`;
+}
+
 async function loadProducts() {
   try {
     const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${PRODUCTS_FILE}`);
     const data = await r.json();
-    fileSha = data.sha;
+    fileSha  = data.sha;
     products = JSON.parse(atob(data.content.replace(/\n/g,"")));
     renderProducts();
   } catch {
@@ -295,13 +453,19 @@ async function saveToGitHub(newProducts, message) {
   return data;
 }
 
-/* ===== PRODUCTS CRUD ===== */
+/* ============================================================
+   PRODUCTS CRUD
+============================================================ */
 function renderProducts() {
   const el = document.getElementById("productList");
   if (!products.length) { el.innerHTML = `<div class="loading-overlay">Belum ada produk.</div>`; return; }
   el.innerHTML = products.map(p => `
     <div class="product-row">
-      <div class="product-emoji">${p.emoji}</div>
+      <div class="product-thumb">
+        ${p.image
+          ? `<img src="${p.image}" alt="${p.name}" loading="lazy"/>`
+          : p.emoji}
+      </div>
       <div class="product-info">
         <strong>${p.name}${!p.active?'<span class="badge-off">nonaktif</span>':''}</strong>
         <span>${p.sizes.join(", ")} · ${p.colors.join(", ")}</span>
@@ -315,7 +479,7 @@ function renderProducts() {
   `).join("");
 }
 
-function saveProduct() {
+async function saveProduct() {
   const name   = document.getElementById("fName").value.trim();
   const price  = parseInt(document.getElementById("fPrice").value);
   const sizes  = document.getElementById("fSizes").value.split(",").map(s=>s.trim()).filter(Boolean);
@@ -323,61 +487,99 @@ function saveProduct() {
   const emoji  = document.getElementById("fEmoji").value;
   const active = document.getElementById("fActive").checked;
 
-  if (!name) { toast("Isi nama produk dulu!"); return; }
-  if (!price || price < 1) { toast("Isi harga yang valid!"); return; }
-  if (!sizes.length) { toast("Isi minimal 1 ukuran!"); return; }
-  if (!colors.length) { toast("Isi minimal 1 warna!"); return; }
+  if (!name)              { toast("Isi nama produk dulu!"); return; }
+  if (!price || price<1)  { toast("Isi harga yang valid!"); return; }
+  if (!sizes.length)      { toast("Isi minimal 1 ukuran!"); return; }
+  if (!colors.length)     { toast("Isi minimal 1 warna!"); return; }
 
   const btn = document.getElementById("saveBtn");
   btn.innerHTML = `<span class="spinner"></span> Menyimpan...`;
-  btn.disabled = true;
+  btn.disabled  = true;
 
-  let newProducts;
-  if (editingId) {
-    newProducts = products.map(p => p.id===editingId ? {...p, name, price, sizes, colors, emoji, active} : p);
-  } else {
-    const newId = products.length ? Math.max(...products.map(p=>p.id)) + 1 : 1;
-    newProducts = [...products, { id: newId, name, price, emoji, sizes, colors, active }];
+  try {
+    // --- Upload gambar jika ada perubahan ---
+    let imageUrl = imageName || null; // URL lama atau null
+
+    if (imageChanged) {
+      if (imageB64) {
+        // Ada gambar baru → upload
+        const ext      = "jpg";
+        const fname    = `prod_${Date.now()}.${ext}`;
+        const progress = document.getElementById("uploadProgress");
+        const bar      = document.getElementById("uploadProgressBar");
+        progress.classList.add("show"); bar.style.width = "40%";
+        imageUrl = await uploadImage(imageB64, fname);
+        bar.style.width = "100%";
+        setTimeout(() => progress.classList.remove("show"), 600);
+      } else {
+        // Gambar dihapus
+        imageUrl = null;
+      }
+    }
+
+    // --- Buat / update data produk ---
+    let newProducts;
+    if (editingId) {
+      newProducts = products.map(p =>
+        p.id===editingId ? {...p, name, price, sizes, colors, emoji, active, image: imageUrl} : p
+      );
+    } else {
+      const newId = products.length ? Math.max(...products.map(p=>p.id)) + 1 : 1;
+      newProducts = [...products, { id:newId, name, price, emoji, sizes, colors, active, image: imageUrl }];
+    }
+
+    await saveToGitHub(newProducts, editingId ? `update produk: ${name}` : `tambah produk: ${name}`);
+    products = newProducts;
+    renderProducts();
+    cancelEdit();
+    toast(editingId ? "Produk diperbarui ✓" : "Produk ditambahkan ✓");
+  } catch(err) {
+    toast("Gagal menyimpan: " + err.message);
+  } finally {
+    btn.innerHTML = "Simpan Produk";
+    btn.disabled  = false;
   }
-
-  saveToGitHub(newProducts, editingId ? `update produk: ${name}` : `tambah produk: ${name}`)
-    .then(() => {
-      products = newProducts;
-      renderProducts();
-      cancelEdit();
-      toast(editingId ? "Produk diperbarui ✓" : "Produk ditambahkan ✓");
-    })
-    .catch(() => toast("Gagal menyimpan. Coba lagi."))
-    .finally(() => { btn.innerHTML = "Simpan Produk"; btn.disabled = false; });
 }
 
 function editProduct(id) {
   const p = products.find(x=>x.id===id);
   if (!p) return;
-  editingId = id;
-  document.getElementById("formTitle").textContent = "✏️ Edit Produk";
-  document.getElementById("fName").value   = p.name;
-  document.getElementById("fPrice").value  = p.price;
-  document.getElementById("fSizes").value  = p.sizes.join(", ");
-  document.getElementById("fColors").value = p.colors.join(", ");
-  document.getElementById("fActive").checked = p.active;
-  selectEmoji(p.emoji);
+  editingId    = id;
+  imageChanged = false;
+  imageName    = p.image || null;
+
+  document.getElementById("formTitle").textContent   = "✏️ Edit Produk";
+  document.getElementById("fName").value             = p.name;
+  document.getElementById("fPrice").value            = p.price;
+  document.getElementById("fSizes").value            = p.sizes.join(", ");
+  document.getElementById("fColors").value           = p.colors.join(", ");
+  document.getElementById("fActive").checked         = p.active;
   document.getElementById("cancelBtn").style.display = "inline-flex";
-  document.getElementById("saveBtn").textContent = "Simpan Perubahan";
+  document.getElementById("saveBtn").textContent     = "Simpan Perubahan";
+  selectEmoji(p.emoji);
+
+  // Tampilkan gambar lama
+  if (p.image) {
+    showPreview(p.image);
+  } else {
+    resetImageUI();
+  }
+
   window.scrollTo({top:0, behavior:"smooth"});
 }
 
 function cancelEdit() {
   editingId = null;
-  document.getElementById("formTitle").textContent = "➕ Tambah Produk";
-  document.getElementById("fName").value   = "";
-  document.getElementById("fPrice").value  = "";
-  document.getElementById("fSizes").value  = "";
-  document.getElementById("fColors").value = "";
-  document.getElementById("fActive").checked = true;
-  selectEmoji("👗");
+  document.getElementById("formTitle").textContent   = "➕ Tambah Produk";
+  document.getElementById("fName").value             = "";
+  document.getElementById("fPrice").value            = "";
+  document.getElementById("fSizes").value            = "";
+  document.getElementById("fColors").value           = "";
+  document.getElementById("fActive").checked         = true;
   document.getElementById("cancelBtn").style.display = "none";
-  document.getElementById("saveBtn").textContent = "Simpan Produk";
+  document.getElementById("saveBtn").textContent     = "Simpan Produk";
+  selectEmoji("👗");
+  resetImageUI();
 }
 
 async function deleteProduct(id) {
@@ -392,19 +594,21 @@ async function deleteProduct(id) {
   } catch { toast("Gagal menghapus."); }
 }
 
-/* ===== ORDERS ===== */
+/* ============================================================
+   ORDERS
+============================================================ */
 async function loadOrders() {
   const el = document.getElementById("orderList");
   try {
     const r = await ghFetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/orders.json`);
-    if (r.status === 404) { el.innerHTML = `<div class="loading-overlay">Belum ada pesanan masuk.</div>`; return; }
-    const data = await r.json();
+    if (r.status===404) { el.innerHTML=`<div class="loading-overlay">Belum ada pesanan masuk.</div>`; return; }
+    const data   = await r.json();
     const orders = JSON.parse(atob(data.content.replace(/\n/g,"")));
-    if (!orders.length) { el.innerHTML = `<div class="loading-overlay">Belum ada pesanan.</div>`; return; }
-    el.innerHTML = [...orders].reverse().map((o,i) => `
+    if (!orders.length) { el.innerHTML=`<div class="loading-overlay">Belum ada pesanan.</div>`; return; }
+    el.innerHTML = [...orders].reverse().map((o,i)=>`
       <div class="order-row">
         <div class="order-header">
-          <span class="order-num">#${orders.length - i}</span>
+          <span class="order-num">#${orders.length-i}</span>
           <strong>${o.nama}</strong>
           <span style="font-size:.82rem;color:#666">· ${o.wa}</span>
           <span class="order-time">${o.waktu||""}</span>
@@ -416,10 +620,12 @@ async function loadOrders() {
         </div>
       </div>
     `).join("");
-  } catch { el.innerHTML = `<div class="loading-overlay">Gagal memuat pesanan.</div>`; }
+  } catch { el.innerHTML=`<div class="loading-overlay">Gagal memuat pesanan.</div>`; }
 }
 
-/* ===== HELPERS ===== */
+/* ============================================================
+   HELPERS
+============================================================ */
 const fmt = n => "Rp " + n.toLocaleString("id-ID");
 
 function toast(msg) {

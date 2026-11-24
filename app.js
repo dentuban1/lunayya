@@ -29,7 +29,11 @@ function renderProducts() {
     .map(
       (p) => `
     <div class="product-card" id="card-${p.id}">
-      <div class="product-img">${p.emoji}</div>
+      <div class="product-img">
+        ${p.image
+          ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"/>`
+          : p.emoji}
+      </div>
       <div class="product-info">
         <div class="product-name">${p.name}</div>
         <div class="product-price">${fmt(p.price)}</div>
