@@ -230,6 +230,13 @@ function addToCart(id) {
 }
 
 function removeFromCart(key) { cart = cart.filter(i => i.key!==key); updateCart(); }
+function changeQty(key, delta) {
+  const item = cart.find(i => i.key===key);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(i => i.key!==key);
+  updateCart();
+}
 
 function flashCard(id) {
   const card = document.getElementById(`card-${id}`);
@@ -255,11 +262,16 @@ function updateCart() {
     list.innerHTML = cart.map(i => `
       <div class="order-item">
         <div class="order-item-emoji">
-          ${i.image ? `<img src="${i.image}" style="width:36px;height:36px;object-fit:cover;border-radius:8px"/>` : i.emoji}
+          ${i.image ? `<img src="${i.image}" style="width:38px;height:38px;object-fit:cover;border-radius:8px"/>` : i.emoji}
         </div>
         <div class="order-item-info">
           <div class="order-item-name">${i.name}</div>
-          <div class="order-item-detail">${i.size} · ${i.color} · ${i.qty} pcs</div>
+          <div class="order-item-detail">${i.size} · ${i.color}</div>
+        </div>
+        <div class="order-item-qty">
+          <button class="qty-btn" onclick="changeQty('${i.key}',-1)">−</button>
+          <span class="qty-num">${i.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${i.key}',1)">+</button>
         </div>
         <div class="order-item-price">${fmt(i.price*i.qty)}</div>
         <button class="remove-btn" onclick="removeFromCart('${i.key}')" title="Hapus">×</button>
