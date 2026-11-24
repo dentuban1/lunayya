@@ -68,5 +68,19 @@
     ],
     "active": true,
     "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525429338.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Khiban Silver HALUS bahan rayon tancel",
+    "price": 60000,
+    "emoji": "👗",
+    "sizes": [
+      "All Size"
+    ],
+    "colors": [
+      "Silver"
+    ],
+    "active": true,
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525515556.jpg"
   }
 ]
