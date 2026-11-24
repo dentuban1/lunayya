@@ -89,6 +89,12 @@ async function loadSettings() {
 /* ============================================================
    KATALOG
 ============================================================ */
+function getProductImages(p) {
+  if (p.images && p.images.length) return p.images;
+  if (p.image) return [p.image];
+  return [];
+}
+
 function renderProducts() {
   const track = document.getElementById("productTrack");
   if (!track) return;
@@ -96,12 +102,18 @@ function renderProducts() {
     track.innerHTML = `<div style="padding:40px;color:#aaa;text-align:center;width:100%">Belum ada produk. Tambahkan di Admin Panel.</div>`;
     return;
   }
-  track.innerHTML = products.map(p => `
+  track.innerHTML = products.map(p => {
+    const imgs = getProductImages(p);
+    const firstImg = imgs[0];
+    const hasMulti = imgs.length > 1;
+    return `
     <div class="product-card" id="card-${p.id}">
-      <div class="product-img">
-        ${p.image
-          ? `<img src="${p.image}" alt="${p.name}" loading="lazy"/>`
-          : p.emoji}
+      <div class="product-img-wrap" onclick="openLightbox(${p.id})" style="cursor:${imgs.length?'zoom-in':'default'}">
+        <div class="product-img">
+          ${firstImg ? `<img src="${firstImg}" alt="${p.name}" loading="lazy"/>` : p.emoji}
+        </div>
+        ${hasMulti ? `<div class="product-img-count">+${imgs.length - 1} foto</div>` : ''}
+        ${imgs.length ? `<div class="product-img-hint">🔍</div>` : ''}
       </div>
       <div class="product-info">
         <div class="product-name">${p.name}</div>
@@ -118,9 +130,86 @@ function renderProducts() {
           <button class="add-btn" onclick="addToCart(${p.id})">+ Tambah ke Pesanan</button>
         </div>
       </div>
-    </div>`
-  ).join("");
+    </div>`;
+  }).join("");
 }
+
+/* ============================================================
+   LIGHTBOX
+============================================================ */
+let lbImages  = [];
+let lbIndex   = 0;
+let lbTouchX  = 0;
+
+function openLightbox(productId) {
+  const p = products.find(x => x.id === productId);
+  if (!p) return;
+  lbImages = getProductImages(p);
+  if (!lbImages.length) return;
+  lbIndex = 0;
+
+  const lb = document.getElementById("lightbox");
+  lb.querySelector(".lb-product-name").textContent  = p.name;
+  lb.querySelector(".lb-product-price").textContent = fmt(p.price);
+  renderLightboxSlide();
+  lb.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function renderLightboxSlide() {
+  const img   = document.getElementById("lbMainImg");
+  const counter = document.getElementById("lbCounter");
+  const dots  = document.getElementById("lbDots");
+  img.style.opacity = "0";
+  img.src = lbImages[lbIndex];
+  img.onload = () => { img.style.opacity = "1"; };
+  counter.textContent = `${lbIndex + 1} / ${lbImages.length}`;
+  // dots
+  dots.innerHTML = lbImages.map((_, i) =>
+    `<button class="lb-dot ${i===lbIndex?'active':''}" onclick="lbGoTo(${i})"></button>`
+  ).join("");
+  // arrows
+  document.getElementById("lbPrev").style.visibility = lbIndex > 0 ? "visible" : "hidden";
+  document.getElementById("lbNext").style.visibility = lbIndex < lbImages.length - 1 ? "visible" : "hidden";
+  // thumbnails
+  const thumbs = document.getElementById("lbThumbs");
+  thumbs.innerHTML = lbImages.map((url, i) =>
+    `<img src="${url}" class="lb-thumb ${i===lbIndex?'active':''}" onclick="lbGoTo(${i})" loading="lazy" alt="foto ${i+1}"/>`
+  ).join("");
+  thumbs.style.display = lbImages.length > 1 ? "flex" : "none";
+}
+
+function lbGoTo(n) {
+  lbIndex = Math.max(0, Math.min(n, lbImages.length - 1));
+  renderLightboxSlide();
+}
+
+function lbPrev() { if (lbIndex > 0) lbGoTo(lbIndex - 1); }
+function lbNext() { if (lbIndex < lbImages.length - 1) lbGoTo(lbIndex + 1); }
+
+// Keyboard
+document.addEventListener("keydown", e => {
+  if (!document.getElementById("lightbox").classList.contains("open")) return;
+  if (e.key === "ArrowLeft")  lbPrev();
+  if (e.key === "ArrowRight") lbNext();
+  if (e.key === "Escape")     closeLightbox();
+});
+
+// Touch swipe
+document.addEventListener("DOMContentLoaded", () => {
+  const lbImg = document.getElementById("lbMainImg");
+  if (!lbImg) return;
+  lbImg.addEventListener("touchstart", e => { lbTouchX = e.touches[0].clientX; }, {passive:true});
+  lbImg.addEventListener("touchend",   e => {
+    const dx = e.changedTouches[0].clientX - lbTouchX;
+    if (Math.abs(dx) > 40) dx < 0 ? lbNext() : lbPrev();
+  }, {passive:true});
+});
 
 function initSlider() {
   const track = document.getElementById("productTrack");
@@ -252,3 +341,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 ============================================================ */
 function scrollToOrder() { document.getElementById("pesanan").scrollIntoView({behavior:"smooth"}); }
 function closeModal()    { document.getElementById("modalOverlay").classList.remove("show"); }
+function handleLbOverlayClick(e) { if (e.target.classList.contains("lightbox")) closeLightbox(); }

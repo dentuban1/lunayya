@@ -287,6 +287,27 @@
     <strong>Pesan →</strong>
   </div>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="handleLbOverlayClick(event)">
+    <div class="lb-box">
+      <button class="lb-close" onclick="closeLightbox()">×</button>
+      <div class="lb-main">
+        <button class="lb-arrow" id="lbPrev" onclick="lbPrev()">&#8249;</button>
+        <div class="lb-img-wrap">
+          <img id="lbMainImg" src="" alt="foto produk"/>
+        </div>
+        <button class="lb-arrow" id="lbNext" onclick="lbNext()">&#8250;</button>
+      </div>
+      <div class="lb-thumbs" id="lbThumbs"></div>
+      <div class="lb-info">
+        <div class="lb-product-name"></div>
+        <div class="lb-product-price"></div>
+        <span class="lb-counter" id="lbCounter">1 / 1</span>
+      </div>
+      <div class="lb-dots" id="lbDots"></div>
+    </div>
+  </div>
+
   <!-- SUCCESS MODAL -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">

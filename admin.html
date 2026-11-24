@@ -87,6 +87,39 @@
     .remove-img-btn:hover{background:#fee2e2}
     .remove-img-btn.show{display:flex}
 
+    /* MULTI IMAGE UPLOAD */
+    .multi-img-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+    .multi-img-slot{
+      width:90px;height:90px;border-radius:12px;
+      border:2px dashed #d8d0ff;background:#faf8ff;
+      position:relative;overflow:hidden;cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+      flex-shrink:0;transition:border-color .2s,background .2s;
+    }
+    .multi-img-slot:hover{border-color:var(--purple);background:var(--purple-light)}
+    .multi-img-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+    .multi-img-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:10px}
+    .multi-img-slot .slot-icon{font-size:1.3rem;position:relative;z-index:1}
+    .multi-img-slot .slot-label{font-size:.65rem;color:#bbb;position:relative;z-index:1}
+    .multi-img-slot .slot-del{
+      position:absolute;top:3px;right:3px;z-index:5;
+      background:rgba(0,0,0,.55);color:#fff;border:none;border-radius:50%;
+      width:20px;height:20px;cursor:pointer;font-size:.7rem;
+      display:none;align-items:center;justify-content:center;line-height:1;
+    }
+    .multi-img-slot .slot-del.show{display:flex}
+    .multi-img-slot .slot-del:hover{background:rgba(220,38,38,.85)}
+    .multi-img-add{
+      width:90px;height:90px;border-radius:12px;
+      border:2px dashed #d8d0ff;background:#faf8ff;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+      cursor:pointer;position:relative;flex-shrink:0;transition:border-color .2s,background .2s;
+    }
+    .multi-img-add:hover{border-color:var(--purple);background:var(--purple-light)}
+    .multi-img-add input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+    .multi-img-add .add-icon{font-size:1.4rem;color:#c4b5fd}
+    .multi-img-add .add-label{font-size:.65rem;color:#bbb}
+
     /* PROGRESS */
     .progress-bar-wrap{width:100%;background:#ede9fe;border-radius:99px;height:5px;margin-top:8px;display:none}
     .progress-bar{height:100%;background:var(--purple);border-radius:99px;width:0;transition:width .4s}
@@ -222,19 +255,11 @@
       <div class="card">
         <div class="card-title" id="formTitle">➕ Tambah Produk</div>
 
-        <!-- Foto -->
+        <!-- Foto Multi -->
         <div class="form-group">
-          <label>Foto Produk <span style="color:#bbb;font-weight:400">(opsional · maks 2 MB)</span></label>
-          <div class="upload-area" id="productImgArea">
-            <input type="file" id="fImage" accept="image/jpeg,image/png,image/webp" onchange="onProductImagePick(event)"/>
-            <button type="button" class="remove-img-btn" id="productImgRemove" onclick="removeProductImage(event)">×</button>
-            <div id="productImgPlaceholder">
-              <div class="upload-icon">📷</div>
-              <div class="upload-label">Klik atau seret foto ke sini</div>
-              <div class="upload-hint">JPG / PNG / WEBP · otomatis dikecilkan ke 800px</div>
-            </div>
-            <img class="preview-img" id="productImgPreview" alt="preview"/>
-            <div class="progress-bar-wrap" id="productImgProgress"><div class="progress-bar" id="productImgBar"></div></div>
+          <label>Foto Produk <span style="color:#bbb;font-weight:400">(maks 6 foto · klik thumbnail untuk hapus)</span></label>
+          <div class="multi-img-wrap" id="prodImgWrap">
+            <!-- diisi JS -->
           </div>
         </div>
 
@@ -429,7 +454,6 @@ function doLogout() {
 ====================================================== */
 window.addEventListener("DOMContentLoaded", () => {
   buildEmojiGrid();
-  setupDragDrop("productImgArea", onProductImageDrop);
   const saved = localStorage.getItem("jc_token");
   if (saved) { TOKEN = saved; document.getElementById("tokenInput").value = saved; doLogin(); }
   document.getElementById("tokenInput").addEventListener("keydown", e => { if(e.key==="Enter") doLogin(); });
@@ -450,6 +474,7 @@ function showAdmin() {
   document.getElementById("loginScreen").style.display = "none";
   document.getElementById("adminScreen").style.display = "block";
   loadProducts();
+  initProdImgSlots([]);
   loadSettings();
 }
 
@@ -709,29 +734,58 @@ async function saveTestimoni() {
 }
 
 /* ======================================================
-   PRODUCT IMAGE
+   PRODUCT MULTI-IMAGE
 ====================================================== */
-function setupDragDrop(areaId, handler) {
-  const area = document.getElementById(areaId);
-  if (!area) return;
-  area.addEventListener("dragover",  e => { e.preventDefault(); area.classList.add("drag"); });
-  area.addEventListener("dragleave", () => area.classList.remove("drag"));
-  area.addEventListener("drop", e => { e.preventDefault(); area.classList.remove("drag"); handler(e.dataTransfer.files[0]); });
+const MAX_PROD_IMGS = 6;
+// prodImgSlots: array of { url: string|null, b64: string|null, changed: bool, isNew: bool }
+let prodImgSlots = [];
+
+function initProdImgSlots(existingImages) {
+  // existingImages: array of url string (dari produk yg di-edit), atau []
+  prodImgSlots = (existingImages||[]).map(url => ({ url, b64:null, changed:false, isNew:false }));
+  renderProdImgSlots();
 }
 
-function onProductImageDrop(file) { if(file) processUploadFile(file, 800, applyProductImage); }
-function onProductImagePick(e)   { const f=e.target.files[0]; if(f) processUploadFile(f, 800, applyProductImage); }
-
-function applyProductImage(b64, dataUrl) {
-  prodImgB64 = b64; prodImgChanged = true;
-  showUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove", dataUrl);
+function renderProdImgSlots() {
+  const wrap = document.getElementById("prodImgWrap");
+  if (!wrap) return;
+  let html = "";
+  prodImgSlots.forEach((slot, i) => {
+    html += `<div class="multi-img-slot" id="pslot${i}">
+      ${slot.url ? `<img src="${slot.url}" alt="foto ${i+1}"/>` : `<div class="slot-icon">📷</div><div class="slot-label">Foto ${i+1}</div>`}
+      <button type="button" class="slot-del ${slot.url?'show':''}" onclick="removeProdImg(event,${i})">×</button>
+    </div>`;
+  });
+  if (prodImgSlots.length < MAX_PROD_IMGS) {
+    html += `<div class="multi-img-add">
+      <input type="file" accept="image/*" multiple onchange="onProdImgAdd(event)"/>
+      <div class="add-icon">＋</div>
+      <div class="add-label">Tambah Foto</div>
+    </div>`;
+  }
+  wrap.innerHTML = html;
 }
 
-function removeProductImage(e) {
+function onProdImgAdd(e) {
+  const files = Array.from(e.target.files).slice(0, MAX_PROD_IMGS - prodImgSlots.length);
+  files.forEach(file => {
+    if (prodImgSlots.length >= MAX_PROD_IMGS) return;
+    processUploadFile(file, 900, (b64, dataUrl) => {
+      prodImgSlots.push({ url: dataUrl, b64, changed: true, isNew: true });
+      renderProdImgSlots();
+    });
+  });
+}
+
+function removeProdImg(e, idx) {
   e.stopPropagation();
-  prodImgB64 = null; prodImgChanged = true;
-  hideUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove");
-  document.getElementById("fImage").value = "";
+  prodImgSlots.splice(idx, 1);
+  renderProdImgSlots();
+}
+
+function resetProdImgSlots() {
+  prodImgSlots = [];
+  renderProdImgSlots();
 }
 
 /* ======================================================
@@ -743,7 +797,7 @@ function renderProductList() {
   el.innerHTML = products.map(p => `
     <div class="product-row">
       <div class="product-thumb">
-        ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy"/>` : p.emoji}
+        ${(p.images&&p.images[0])||p.image ? `<img src="${(p.images&&p.images[0])||p.image}" alt="${p.name}" loading="lazy"/>` : p.emoji}
       </div>
       <div class="product-info">
         <strong>${p.name}${!p.active?'<span class="badge-off">nonaktif</span>':''}</strong>
@@ -775,24 +829,24 @@ async function saveProduct() {
   btn.innerHTML = `<span class="spinner"></span> Menyimpan...`; btn.disabled = true;
 
   try {
-    let imageUrl = prodImgOldUrl;
-    if (prodImgChanged) {
-      if (prodImgB64) {
-        const bar = document.getElementById("productImgBar");
-        const pg  = document.getElementById("productImgProgress");
-        pg.classList.add("show"); bar.style.width = "40%";
-        imageUrl = await uploadFileToBranch(prodImgB64, `${IMAGES_DIR}/prod_${Date.now()}.jpg`, `upload foto: ${name}`);
-        bar.style.width = "100%";
-        setTimeout(() => pg.classList.remove("show"), 500);
-      } else { imageUrl = null; }
+    // Upload gambar baru, kumpulkan semua URL
+    const finalImages = [];
+    for (const slot of prodImgSlots) {
+      if (slot.isNew && slot.b64) {
+        const url = await uploadFileToBranch(slot.b64, `${IMAGES_DIR}/prod_${Date.now()}_${Math.random().toString(36).slice(2,6)}.jpg`, `upload foto: ${name}`);
+        finalImages.push(url);
+      } else if (slot.url && !slot.isNew) {
+        finalImages.push(slot.url);
+      }
     }
+    const imageUrl = finalImages[0] || null; // backward compat
 
     let newProducts;
     if (editingId) {
-      newProducts = products.map(p => p.id===editingId ? {...p, name, price, sizes, colors, emoji, active, image:imageUrl||null} : p);
+      newProducts = products.map(p => p.id===editingId ? {...p, name, price, sizes, colors, emoji, active, image:imageUrl||null, images:finalImages} : p);
     } else {
       const newId = products.length ? Math.max(...products.map(p=>p.id))+1 : 1;
-      newProducts = [...products, {id:newId, name, price, emoji, sizes, colors, active, image:imageUrl||null}];
+      newProducts = [...products, {id:newId, name, price, emoji, sizes, colors, active, image:imageUrl||null, images:finalImages}];
     }
 
     productFileSha = await saveJsonFile(newProducts, PRODUCTS_FILE, productFileSha, editingId?`update: ${name}`:`tambah: ${name}`);
@@ -817,8 +871,9 @@ function editProduct(id) {
   document.getElementById("cancelBtn").style.display = "inline-flex";
   document.getElementById("saveBtn").textContent     = "Simpan Perubahan";
   selectEmoji(p.emoji||"👗");
-  if (p.image) showUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove", p.image);
-  else hideUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove");
+  // Load existing images
+  const existingImgs = p.images && p.images.length ? p.images : (p.image ? [p.image] : []);
+  initProdImgSlots(existingImgs);
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -830,8 +885,7 @@ function cancelEdit() {
   document.getElementById("cancelBtn").style.display = "none";
   document.getElementById("saveBtn").textContent     = "Simpan Produk";
   selectEmoji("👗");
-  hideUploadPreview("productImgPreview","productImgPlaceholder","productImgRemove");
-  document.getElementById("fImage").value = "";
+  resetProdImgSlots();
 }
 
 async function deleteProduct(id) {
