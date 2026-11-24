@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Khiban Biskuit  HALUS bahan rayon tancel",
     "price": 60000,
-    "emoji": "👗",
+    "emoji": "ð",
     "sizes": [
       "All Size"
     ],
@@ -11,13 +11,17 @@
       "Biskuit"
     ],
     "active": true,
-    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525077101.jpg"
+    "image": "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525077101.jpg",
+    "images": [
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795525077101.jpg",
+      "https://raw.githubusercontent.com/dentuban1/lunayya/main/images/prod_1795526284866_eh2e.jpg"
+    ]
   },
   {
     "id": 2,
     "name": "Khiban Coffee HALUS bahan rayon tancel",
     "price": 60000,
-    "emoji": "👗",
+    "emoji": "ð",
     "sizes": [
       "All Size"
     ],
@@ -31,7 +35,7 @@
     "id": 3,
     "name": "Khiban Hitam HALUS bahan rayon tancel",
     "price": 60000,
-    "emoji": "👗",
+    "emoji": "ð",
     "sizes": [
       "All Size"
     ],
@@ -45,7 +49,7 @@
     "id": 4,
     "name": "Khiban Ivory HALUS bahan rayon tancel",
     "price": 60000,
-    "emoji": "👗",
+    "emoji": "ð",
     "sizes": [
       "All Size"
     ],
@@ -59,7 +63,7 @@
     "id": 5,
     "name": "Khiban Pink Blush HALUS bahan rayon tancel",
     "price": 60000,
-    "emoji": "👗",
+    "emoji": "ð",
     "sizes": [
       "All Size"
     ],
@@ -73,7 +77,7 @@
     "id": 6,
     "name": "Khiban Silver HALUS bahan rayon tancel",
     "price": 60000,
-    "emoji": "👗",
+    "emoji": "ð",
     "sizes": [
       "All Size"
     ],
