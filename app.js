@@ -3,11 +3,16 @@
 =================================================== */
 const WHATSAPP_NUMBER = "62881026285218";
 
+/* ===== HELPERS ===== */
+
 /* ===== STATE ===== */
 let products = [];
 let cart     = [];
+const ONGKIR        = 15000;
+const FREE_ONGKIR_MIN = 2; // minimal qty untuk free ongkir
 
-/* ===== HELPERS ===== */
+const shippingCost  = () => totalQty() >= FREE_ONGKIR_MIN ? 0 : (totalQty() > 0 ? ONGKIR : 0);
+const grandTotal    = () => totalPrice() + shippingCost();
 const fmt        = n  => "Rp " + n.toLocaleString("id-ID");
 const totalPrice = () => cart.reduce((s,i) => s + i.price * i.qty, 0);
 const totalQty   = () => cart.reduce((s,i) => s + i.qty, 0);
@@ -250,10 +255,19 @@ function updateCart() {
   const total = totalPrice();
   document.getElementById("cartCount").textContent   = qty;
   document.getElementById("stickyCount").textContent = qty;
-  document.getElementById("stickyTotal").textContent = fmt(total);
+  document.getElementById("stickyTotal").textContent = fmt(grandTotal());
   document.getElementById("stickyCart").classList.toggle("show", qty>0);
   // padding-bottom body agar konten tidak tertutup sticky cart di mobile
   document.body.style.paddingBottom = qty > 0 && window.innerWidth < 900 ? "60px" : "";
+
+  // --- ongkir rows ---
+  const isFree = qty >= FREE_ONGKIR_MIN;
+  const ongkirRow     = document.getElementById("ongkirRow");
+  const freeRow       = document.getElementById("freeOngkirRow");
+  const subtotalEl    = document.getElementById("orderSubtotal");
+  if (subtotalEl) subtotalEl.textContent = fmt(totalPrice());
+  if (ongkirRow)  ongkirRow.style.display  = (!isFree && qty > 0) ? "flex" : "none";
+  if (freeRow)    freeRow.style.display    = (isFree  && qty > 0) ? "flex" : "none";
 
   const list = document.getElementById("orderList");
   if (!cart.length) {
@@ -278,7 +292,7 @@ function updateCart() {
       </div>`
     ).join("");
   }
-  document.getElementById("orderTotal").textContent = fmt(total);
+  document.getElementById("orderTotal").textContent = fmt(grandTotal());
 }
 
 /* ============================================================
@@ -306,7 +320,12 @@ function buildWAMessage() {
   if (catatan) msg += `📝 *Catatan:* ${catatan}\n`;
   msg += `\n🛒 *Daftar Pesanan:*\n`;
   cart.forEach((i,idx) => { msg += `${idx+1}. ${i.name} – ${i.size} – ${i.color} ×${i.qty} = ${fmt(i.price*i.qty)}\n`; });
-  msg += `\n💰 *Total: ${fmt(totalPrice())}*\n\nMohon konfirmasi pesanan saya. Terima kasih! 🙏`;
+  const ongkir = shippingCost();
+  msg += `\n🛒 Subtotal: ${fmt(totalPrice())}\n`;
+  msg += ongkir > 0
+    ? `🚚 Ongkos kirim: ${fmt(ongkir)}\n`
+    : `🚚 Ongkos kirim: *GRATIS* 🎉\n`;
+  msg += `\n💰 *Total: ${fmt(grandTotal())}*\n\nMohon konfirmasi pesanan saya. Terima kasih! 🙏`;
   return msg;
 }
 

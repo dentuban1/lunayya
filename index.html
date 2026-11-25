@@ -117,6 +117,15 @@
     </div>
   </section>
 
+  <!-- BANNER FREE ONGKIR -->
+  <div class="freeongkir-banner">
+    <span class="fob-icon">🚚</span>
+    <div class="fob-text">
+      <strong>FREE ONGKIR</strong> min. 2 pcs
+    </div>
+    <div class="fob-sub">1 item = Rp 15.000 · 2 item ke atas = <strong>GRATIS</strong></div>
+  </div>
+
   <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
@@ -202,7 +211,20 @@
         <div class="order-card">
           <h3>🛍️ Produk yang dipesan</h3>
           <div id="orderList"><p class="empty-msg">Belum ada produk ditambahkan.</p></div>
-          <div class="order-total">Total <strong id="orderTotal">Rp 0</strong></div>
+          <div class="order-subtotal-row">
+            <span>Subtotal</span><span id="orderSubtotal">Rp 0</span>
+          </div>
+          <div class="order-ongkir-row" id="ongkirRow">
+            <span>Ongkos kirim</span>
+            <span id="ongkirAmt" class="ongkir-amt">Rp 15.000</span>
+          </div>
+          <div class="order-freeongkir-row" id="freeOngkirRow" style="display:none">
+            <span>Ongkos kirim</span>
+            <span class="free-tag">🎉 GRATIS</span>
+          </div>
+          <div class="order-total">
+            <span>Total</span><strong id="orderTotal">Rp 0</strong>
+          </div>
         </div>
         <div class="order-card">
           <h3>📦 Data pengiriman</h3>
