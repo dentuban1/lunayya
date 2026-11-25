@@ -232,6 +232,16 @@ function addToCart(id) {
   else { cart.push({key,id,name:p.name,emoji:p.emoji||"👗",image:p.image||null,price:p.price,size,color,qty:1}); }
   updateCart();
   flashCard(id);
+  // Meta Pixel: AddToCart
+  if (typeof fbq !== "undefined") {
+    fbq("track", "AddToCart", {
+      content_name: p.name,
+      content_ids: [String(id)],
+      content_type: "product",
+      value: p.price / 1000,
+      currency: "IDR"
+    });
+  }
 }
 
 function removeFromCart(key) { cart = cart.filter(i => i.key!==key); updateCart(); }
@@ -355,6 +365,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const msg = encodeURIComponent(buildWAMessage());
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
     document.getElementById("waFallback").href = url;
+    // Meta Pixel: InitiateCheckout
+    if (typeof fbq !== "undefined") {
+      fbq("track", "InitiateCheckout", {
+        num_items: totalQty(),
+        value: grandTotal() / 1000,
+        currency: "IDR"
+      });
+    }
     window.open(url, "_blank");
     document.getElementById("modalOverlay").classList.add("show");
   });
